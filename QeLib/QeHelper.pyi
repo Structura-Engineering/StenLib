@@ -1,6 +1,6 @@
-# complex_id_generator.py
+from typing import Any
 
-def complex_id_generator(char_len: int = 6) -> str:
+def complex_id_generator(char_len: int) -> str:
     """
     Generate a complex ID.
 
@@ -22,15 +22,19 @@ def complex_id_generator(char_len: int = 6) -> str:
     """
     ...
 
-def apply_pyi_docstring() -> None:
+def center_ui_on_screen(
+    ui: Any, screen_center: tuple[int, int], ui_size: tuple[int, int]
+) -> None:
     """
-    Apply the docstring from a .pyi file to a .py file.
+    Center a UI on the screen.
 
-    This function applies the docstring from a .pyi file to a .py file. The .pyi file
-    must be in the same directory as the .py file and must have the same name except
-    for the extension. The .py file must already have a docstring.
+    Parameters:
+        ui (QtWidgets.QWidget): The UI to center.
+
+    This function centers a UI on the screen. The UI must be a subclass of
+    `QtWidgets.QWidget`.
 
     Example:
-        >>> apply_pyi_docstring()
+        >>> center_ui_on_screen(ui)
     """
     ...

@@ -1,33 +1,33 @@
 {
-    "workbench.startupEditor": "none",
-    "code-runner.clearPreviousOutput": true,
-    "code-runner.runInTerminal": true,
-    "code-runner.executorMap": { "python": "$pythonPath -u $fullFileName" },
-    "C_Cpp.errorSquiggles": "enabled",
-  
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.useLibraryCodeForTypes": true,
-    "python.analysis.autoImportCompletions": true,
-    "python.analysis.autoSearchPaths": true,
-    "python.analysis.completeFunctionParens": true,
-    "python.analysis.diagnosticMode": "workspace",
-    "python.analysis.diagnosticSeverityOverrides": {
-      "reportWildcardImportFromLibrary": "none"
+  "workbench.startupEditor": "none",
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.executorMap": { "python": "$pythonPath -u $fullFileName" },
+  "C_Cpp.errorSquiggles": "enabled",
+
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.useLibraryCodeForTypes": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportWildcardImportFromLibrary": "none"
+  },
+  "python.analysis.extraPaths": ["${workspaceFolder}/.venv/Lib/site-packages"],
+  "python.analysis.importFormat": "relative",
+
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
     },
-    "python.analysis.extraPaths": ["${workspaceFolder}/.venv/Lib/site-packages"],
-    "python.analysis.importFormat": "relative",
-  
-    "[python]": {
-      "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-      },
-      "editor.defaultFormatter": "ms-python.black-formatter",
-      "editor.formatOnSave": true
-    },
-  
-    "jupyter.notebookFileRoot": "${workspaceFolder}/src",
-  
-    "git.enableSmartCommit": true,
-    "git.autofetch": true,
-  }
-  
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+
+  "jupyter.notebookFileRoot": "${workspaceFolder}/src",
+
+  "git.enableSmartCommit": true,
+  "git.autofetch": true
+}
