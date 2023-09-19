@@ -21,3 +21,16 @@ def complex_id_generator(char_len: int = 6) -> str:
         '4FwS7eZq'
     """
     ...
+
+def apply_pyi_docstring() -> None:
+    """
+    Apply the docstring from a .pyi file to a .py file.
+
+    This function applies the docstring from a .pyi file to a .py file. The .pyi file
+    must be in the same directory as the .py file and must have the same name except
+    for the extension. The .py file must already have a docstring.
+
+    Example:
+        >>> apply_pyi_docstring()
+    """
+    ...
