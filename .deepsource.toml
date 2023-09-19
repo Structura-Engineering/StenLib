@@ -10,10 +10,4 @@ name = "python"
 name = "black"
 
 [[transformers]]
-name = "autopep8"
-
-[[transformers]]
 name = "isort"
-
-[[transformers]]
-name = "yapf"
