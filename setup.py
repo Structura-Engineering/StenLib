@@ -1,12 +1,16 @@
-from setuptools import setup
+import setuptools as st
 
-setup(
+with open('README.md', 'r') as fh:
+    long_description = fh.read()
+
+st.setup(
     name='QeLib',
     version='0.0.1',
-    description='Qerimi Engineering Library',
+    long_description = long_description,
+    long_description_content_type='text/markdown',
     author='Illyrius',
     license='LICENSE.md',
-    packages=['src'],
+    packages=st.find_packages(),
     python_requires='>=3.11.5',
-    install_requires=['numpy','pyside6','pyqtdarktheme','ezdxf']
+    install_requires=['numpy','pyside6','pyqtdarktheme','ezdxf'],
 )
