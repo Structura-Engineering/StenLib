@@ -1,0 +1,4 @@
+[build-system]
+requires = ["setuptools>=68", "twine"]
+build-backend = "setuptools.build_meta"
+[tool.cyright]
