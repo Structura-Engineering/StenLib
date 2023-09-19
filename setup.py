@@ -12,5 +12,5 @@ st.setup(
     license='LICENSE.md',
     packages=st.find_packages(),
     python_requires='>=3.11.5',
-    install_requires=['numpy','pyside6','pyqtdarktheme','ezdxf'],
+    install_requires=['setuptools>=65','numpy','pyside6','pyqtdarktheme','ezdxf'],
 )
