@@ -1,4 +1,4 @@
-# complex_id_generator.pyi
+# complex_id_generator.py
 
 def complex_id_generator(char_len: int = 6) -> str:
     """
