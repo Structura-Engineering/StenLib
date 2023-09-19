@@ -6,19 +6,12 @@ with open("README.md", "r") as fh:
 
 st.setup(
     name="QeLib",
-    version="0.0.4b",
+    version="0.0.5",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Illyrius",
     license="LICENSE.md",
     packages=st.find_packages(),
     python_requires=">=3.11.5",
-    install_requires=[
-        "setuptools>=68",
-        "wheel",
-        "numpy",
-        "pyside6",
-        "pyqtdarktheme",
-        "ezdxf",
-    ],
+    install_requires=["setuptools", "string", "random"],
 )
