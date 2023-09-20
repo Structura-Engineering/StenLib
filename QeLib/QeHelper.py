@@ -1,18 +1,18 @@
 import random
 import string
-import sys
 
-# TODO: figure out how we can show the docstrings from the .pyi file on the method info box like it does with the type hints.
+from PySide6.QtCore import QPoint
+from PySide6.QtWidgets import QApplication
 
 
 def complex_id_generator(char_len=6):
-    """__doc__ = complex_id_generator.__doc__"""
+    """see *.pyi file for docstring"""
     chars = string.ascii_letters + string.digits
     return "".join(random.choice(chars) for _ in range(abs(char_len)))
 
 
-def center_ui_on_screen(screen_center, ui_size):
-    """__doc__ = complex_id_generator.__doc__"""
-    (x, y), (width, height) = screen_center, ui_size
-    ui_position = (x - width // 2, y - height // 2)
-    sys.argv.extend(["--window-position", f"{ui_position[0]},{ui_position[1]}"])
+def center_ui_on_screen(ui):
+    """see *.pyi file for docstring"""
+    screen_center = QApplication.primaryScreen().geometry().center()
+    ui_size = ui.size()
+    ui.move(screen_center - QPoint(ui_size.width() // 2, ui_size.height() // 2))
