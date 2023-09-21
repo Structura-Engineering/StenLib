@@ -1,0 +1,3 @@
+class QeBaseClass:
+    @classmethod
+    def getattr(cls) -> dict: ...

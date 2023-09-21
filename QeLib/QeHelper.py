@@ -1,43 +1,30 @@
 import random
+import secrets
 import string
 
-from PySide6.QtCore import QPoint
-from PySide6.QtWidgets import QApplication
+CHARS = string.ascii_letters + string.digits
 
 
-def complex_id_generator(char_len=6):
-    """see *.pyi file for docstring"""
-    chars = string.ascii_letters + string.digits
-    return "".join(random.choice(chars) for _ in range(abs(char_len)))
+def alphanumeric_id_generator(char_len: int = 6, use_secrets: bool = False) -> str:
+    """
+    Generate a random alphanumeric ID.
 
+    Args:
+        char_len (int, optional):
+            Absolute length of the generated ID. Defaults to 6.
+        use_secrets (bool, optional):
+            If True, use the secrets module for more secure random choices. Defaults to False.
 
-def center_ui_on_screen(ui) -> None:
-    """see *.pyi file for docstring"""
-    screen_center = QApplication.primaryScreen().geometry().center()
-    ui_size = ui.size()
-    ui.move(screen_center - QPoint(ui_size.width() // 2, ui_size.height() // 2))
+    Returns:
+        str: A randomly generated ID consisting of alphanumeric characters.
 
-def set_ui_size(ui, size=None) -> None:
-    """see *.pyi file for docstring"""
-    if size is None:
-        size = ui.minimumSizeHint()
-    ui.resize(*size)    
-
-def toggle_ui_visibility(uis) -> None:
-    """Toggles the visibility of UI(s)."""
-    for ui in uis:
-        ui.setVisible(not ui.isVisible())
-        if ui.isVisible():
-            center_ui_on_screen(ui)
-
-def switch_modules(module) -> None:
-    """Switches the modules."""
-    current_index = module.currentIndex()
-    new_index = (current_index + 1) % module.count()
-    module.setCurrentIndex(new_index)
-
-def fit_scene_in_view(instance) -> None:
-    """Fits the scene in the view."""
-    instance.fitInView(
-        instance.sceneRect(), AspectRatioModeTypes.KeepAspectRatio.value
-    )
+    Example:
+        >>> alphanumeric_id_generator()
+        'r9g3Yx'
+        >>> alphanumeric_id_generator(10)
+        '1z7y6W1h5Z'
+        >>> alphanumeric_id_generator(-10)
+        '2y6fRk5n8T'
+    """
+    randomizer = secrets if use_secrets else random
+    return "".join(randomizer.choice(CHARS) for _ in range(abs(char_len)))
