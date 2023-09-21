@@ -10,7 +10,7 @@ class QeBaseClass:
     """
 
     @classmethod
-    def getattr(cls) -> dict:
+    def getattrs(cls) -> dict:
         """
         Retrieves non-callable attributes of the class.
 

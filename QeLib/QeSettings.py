@@ -46,6 +46,3 @@ class LumberTypes(QeBaseClass):
         (50, 150),
         (50, 175),
     ]
-
-
-print(LumberTypes.getattr())
