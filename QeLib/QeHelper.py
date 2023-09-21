@@ -17,11 +17,13 @@ def center_ui_on_screen(ui) -> None:
     ui_size = ui.size()
     ui.move(screen_center - QPoint(ui_size.width() // 2, ui_size.height() // 2))
 
+
 def set_ui_size(ui, size=None) -> None:
     """see *.pyi file for docstring"""
     if size is None:
         size = ui.minimumSizeHint()
-    ui.resize(*size)    
+    ui.resize(*size)
+
 
 def toggle_ui_visibility(uis) -> None:
     """Toggles the visibility of UI(s)."""
@@ -30,14 +32,14 @@ def toggle_ui_visibility(uis) -> None:
         if ui.isVisible():
             center_ui_on_screen(ui)
 
+
 def switch_modules(module) -> None:
     """Switches the modules."""
     current_index = module.currentIndex()
     new_index = (current_index + 1) % module.count()
     module.setCurrentIndex(new_index)
 
+
 def fit_scene_in_view(instance) -> None:
     """Fits the scene in the view."""
-    instance.fitInView(
-        instance.sceneRect(), AspectRatioModeTypes.KeepAspectRatio.value
-    )
+    instance.fitInView(instance.sceneRect(), AspectRatioModeTypes.KeepAspectRatio.value)
