@@ -19,9 +19,9 @@ jobs:
       if: steps.keyword_check.outputs.contains_keyword == 'true'
       run: echo "Keyword found in commit message. Running deployment steps..."
         
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@master
       with:
         python-version: '3.11.5'
     - name: Install dependencies
@@ -33,12 +33,11 @@ jobs:
       run: python -m build
     - name: Create GitHub Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: softprops/action-gh-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.sha }}
-        release_name: Release ${{ github.sha }}
         draft: false
         prerelease: false
     - name: Publish package to TestPyPI
