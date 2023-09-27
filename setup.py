@@ -1,35 +1,4 @@
-import os
-import shutil
-
-from setuptools import Command, find_packages, setup
-
-
-class CleanCmd(Command):
-    """
-    Custom clean command to remove previous versions in the dist directory.
-
-    Usage:
-        >>> `python setup.py clean`
-    """
-
-    description = "Remove previous versions in the dist directory"
-    user_options = []
-
-    def initialize_options(self) -> None:
-        """Override method"""
-        pass
-
-    def finalize_options(self) -> None:
-        """Override method"""
-        pass
-
-    def run(self) -> None:
-        """Override method"""
-        for entry in os.listdir("."):
-            if os.path.isdir(entry) and (".egg-info" in entry or entry == "dist"):
-                shutil.rmtree(entry, ignore_errors=True)
-                print(f"Removed '{entry}' directory.")
-
+from setuptools import find_packages, setup
 
 setup(
     name="QeLib",
@@ -50,5 +19,4 @@ setup(
     package_data={
         "*": ["data/*.json", "py_typed", "*.pyi"],
     },
-    cmdclass={"clean": CleanCmd},
 )
