@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Check for keyword in commit message
       id: keyword_check
-      run: echo "::set-output name=contains_keyword::$(echo '${{ github.event.head_commit.message }}' | grep -q '.release' && echo true || echo false)"
+      run: echo "::set-output name=contains_keyword::$(echo '${{ github.event.head_commit.message }}' | grep -q '.deploy' && echo true || echo false)"
 
     - name: Conditional Step
       if: steps.keyword_check.outputs.contains_keyword == 'true'
