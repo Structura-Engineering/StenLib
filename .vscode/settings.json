@@ -15,10 +15,7 @@
   "python.analysis.diagnosticSeverityOverrides": {
     "reportWildcardImportFromLibrary": "none"
   },
-  "python.analysis.extraPaths": [
-    "${workspaceFolder}/.venv/Lib/site-packages",
-    "./QeLib"
-  ],
+  "python.analysis.extraPaths": ["./QeLib"],
   "python.analysis.importFormat": "relative",
 
   "[python]": {
