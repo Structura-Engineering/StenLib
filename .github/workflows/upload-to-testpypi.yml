@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
 
@@ -14,11 +17,11 @@ jobs:
     - name: Check for keyword in commit message
       id: keyword_check
       run: echo "contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -q '.deploy' && echo true || echo false)" >> $GITHUB_ENV
-    
+
     - name: Conditional Step
       if: steps.keyword_check.outputs.contains_keyword == 'true'
       run: echo "Keyword found in commit message. Running deployment steps..."
-        
+
     - uses: actions/checkout@master
     - name: Set up Python
       uses: actions/setup-python@master
