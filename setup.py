@@ -17,9 +17,11 @@ class CleanCmd(Command):
 
     def initialize_options(self) -> None:
         """Override method"""
+        raise NotImplementedError()
 
     def finalize_options(self) -> None:
         """Override method"""
+        raise NotImplementedError()
 
     @staticmethod
     def run() -> None:
