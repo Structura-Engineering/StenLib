@@ -17,11 +17,9 @@ class CleanCmd(Command):
 
     def initialize_options(self) -> None:
         """Override method"""
-        pass
 
     def finalize_options(self) -> None:
         """Override method"""
-        pass
 
     def run(self) -> None:
         """Override method"""
