@@ -17,11 +17,11 @@ class CleanCmd(Command):
 
     def initialize_options(self) -> None:
         """Override method"""
-        pass
+        raise NotImplementedError()
 
     def finalize_options(self) -> None:
         """Override method"""
-        pass
+        raise NotImplementedError()
 
     def run(self) -> None:
         """Override method"""
