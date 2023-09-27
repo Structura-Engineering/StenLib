@@ -17,33 +17,32 @@ jobs:
     
     - name: Conditional Step
       if: steps.keyword_check.outputs.contains_keyword == 'true'
-      run: |
-        echo "Keyword found in commit message. Running deployment steps..."
+      run: echo "Keyword found in commit message. Running deployment steps..."
         
-        - uses: actions/checkout@v2
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: '3.11.5'
-        - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install build
-            pip install twine
-        - name: Build package
-          run: python -m build
-        - name: Create GitHub Release
-          id: create_release
-          uses: actions/create-release@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ github.sha }}
-            release_name: Release ${{ github.sha }}
-            draft: false
-            prerelease: false
-        - name: Publish package to TestPyPI
-          run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-          env:
-            TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
-            TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11.5'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build
+        pip install twine
+    - name: Build package
+      run: python -m build
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.sha }}
+        release_name: Release ${{ github.sha }}
+        draft: false
+        prerelease: false
+    - name: Publish package to TestPyPI
+      run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+      env:
+        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
