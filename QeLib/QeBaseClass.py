@@ -78,9 +78,7 @@ class QeBaseClass:
     """
 
     def __init__(self) -> None:
-        """
-        Initialize QeBaseClass and load data.
-        """
+        """Initialize QeBaseClass and load data."""
         super().__init__()
         self.load_data()
 
@@ -99,9 +97,7 @@ class QeBaseClass:
 
     @classmethod
     def load_data(cls) -> None:
-        """
-        Load data for QE.
-        """
+        """Load data for QE."""
         for filename in os.listdir(QeBaseClass.data_path()):
             with open(os.path.join(QeBaseClass.data_path(), filename), "r") as file:
                 data = json.load(file)
