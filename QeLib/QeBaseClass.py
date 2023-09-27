@@ -108,7 +108,6 @@ class QeBaseClass:
                 attr_name = filename.split(".")[0].upper().replace("_", "")
                 loaded_data = QeLoadedData(data)
                 setattr(cls, attr_name, loaded_data)
-        # TODO: Add handling when underscore is used.
 
     # TODO: Make sure you can add/remove anything not just lists.
 
