@@ -21,7 +21,8 @@ class CleanCmd(Command):
     def finalize_options(self) -> None:
         """Override method"""
 
-    def run(self) -> None:
+    @staticmethod
+    def run() -> None:
         """Override method"""
         for entry in os.listdir("."):
             if os.path.isdir(entry) and (".egg-info" in entry or entry == "dist"):
