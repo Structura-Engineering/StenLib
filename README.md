@@ -5,8 +5,8 @@
 3. activate the environment. `./.venv/Scripts/activate` (Windows) or source `./.venv/bin/activate` (Linux).
 4. `pip install -e .`.
 
-## Upload to PyPi:
+## Build package, Release on Github & Upload to TestPyPi:
 
-1. Update version in setup.py
-2. Run `python setup.py sdist`
-3. Run `twine upload dist/*` or `twine upload -r testpypi dist/*` for test upload
+1. In the push message use the keyword `.deploy`.
+
+# TODO: UPDATE README.md
