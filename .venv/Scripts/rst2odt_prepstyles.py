@@ -16,5 +16,5 @@ with ``python -m docutils.writers.odf_odt.prepstyles``.
 
 from docutils.writers.odf_odt import prepstyles
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     prepstyles.main()
