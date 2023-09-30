@@ -37,7 +37,7 @@ jobs:
       - name: Get Version from setup.py
         id: get_version
         run: |
-          echo "::set-output name=version::$(python -c 'import re; with open(\"setup.py\") as f: print(re.search(r\"'version': '(.+?)'\", f.read()).group(1))')"
+          echo "::set-output name=version::$(python -c 'import re; version=re.search(r\"'version': '(.+?)'\", open(\"setup.py\").read()).group(1); print(version)')"
       
       - name: Create tag
         run: |
