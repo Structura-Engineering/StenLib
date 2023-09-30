@@ -34,8 +34,8 @@ jobs:
       - name: Extract version from setup.py
         id: extract_version
         run: |
-          echo "::set-output name=version::$(python -c 'import re; with open("setup.py") as f: content = f.read(); version = re.search(r"version\s*=\s*\'([^\']+)\'", content).group(1) if re.search(r"version\s*=\s*\'([^\']+)\'", content) else ""; print(version)')"
-        shell: bash
+          version=$(python -c "import re; with open('setup.py') as f: content = f.read(); version = re.search(r'version\s*=\s*\\'([^\']+)\\'', content).group(1) if re.search(r'version\s*=\s*\\'([^\']+)\\'', content) else ''; print(version)")
+          echo "::set-output name=version::$version"
 
       - name: Create & Push tag
         run: |
