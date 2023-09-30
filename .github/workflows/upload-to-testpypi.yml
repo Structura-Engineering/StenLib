@@ -34,7 +34,7 @@ jobs:
       - name: Extract version from setup.py
         id: extract_version
         run: |
-          version=$(python -c "import re; with open('setup.py') as f: content = f.read(); version = re.search(r'version\s*=\s*\\'([^\']+)\\'', content); print(version.group(1) if version else '')")
+          version=$(grep -oP "version\s*=\s*'\K[^']+" setup.py)
           echo "::set-output name=version::$version"
 
       - name: Create & Push tag
