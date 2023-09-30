@@ -34,10 +34,15 @@ jobs:
       - name: Build package
         run: python -m build
 
+      - name: Get Version from setup.py
+        id: get_version
+        run: |
+          echo "::set-output name=version::$(python -c 'import re; with open(\"setup.py\") as f: print(re.search(r\"'version': '(.+?)'\", f.read()).group(1))')"
+      
       - name: Create tag
         run: |
-          git tag TEST
-          git push origin TEST
+          git tag ${{ steps.get_version.outputs.version }}
+          git push origin ${{ steps.get_version.outputs.version }}
 
       - name: Create GitHub Release
         id: create_release
@@ -45,7 +50,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: TEST
+          tag_name: ${{ steps.get_version.outputs.version }}
           draft: false
           prerelease: false
 
