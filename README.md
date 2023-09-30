@@ -7,6 +7,6 @@
 
 ## Build package, Release on Github & Upload to TestPyPi:
 
-1. In the push message use the keyword `.deploy`.
+1. In the push message use the keyword `.deploy_test`.
 
 # TODO: UPDATE README.md
