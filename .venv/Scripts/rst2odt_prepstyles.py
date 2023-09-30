@@ -1,4 +1,4 @@
-#!C:\Users\admin\OneDrive\Documents\05_VSC\QeLib\.venv\Scripts\python.exe
+#!C:\Users\Fitim\OneDrive\Documents\05_VSC\QeLib\.venv\Scripts\python.exe
 
 # Copyright: This module has been placed in the public domain.
 

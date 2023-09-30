@@ -1,4 +1,4 @@
-#!C:\Users\admin\OneDrive\Documents\05_VSC\QeLib\.venv\Scripts\python.exe
+#!C:\Users\Fitim\OneDrive\Documents\05_VSC\QeLib\.venv\Scripts\python.exe
 # :Copyright: © 2015 Günter Milde.
 # :License: Released under the terms of the `2-Clause BSD license`_, in short:
 #
