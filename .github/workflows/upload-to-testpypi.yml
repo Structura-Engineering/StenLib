@@ -34,15 +34,11 @@ jobs:
       - name: Build package
         run: python -m build
 
-      - name: Get Version from setup.py
-        id: get_version
-        run: |
-          echo "::set-output name=version::$(python .github/scripts/get_version.py)"
-      
       - name: Create tag
         run: |
-          git tag ${{ steps.get_version.outputs.version }}
-          git push origin ${{ steps.get_version.outputs.version }}
+          version=$(python .github/scripts/get_version.py)
+          git tag $version
+          git push origin $version
 
       - name: Create GitHub Release
         id: create_release
@@ -50,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.version }}
+          tag_name: $(python .github/scripts/get_version.py)
           draft: false
           prerelease: false
 

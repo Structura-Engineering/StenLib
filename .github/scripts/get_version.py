@@ -1,10 +1,10 @@
 import re
 
-with open("setup.py") as f:
-    version_match = re.search(r"version=\"(.+?)\"", f.read())
 
-if version_match:
-    version = version_match.group(1)
-    print(version)
-else:
-    print("Version not found")
+def get_version():
+    with open("setup.py", "r") as f:
+        setup_file = f.read()
+    version_match = re.search(r"^VERSION\s*=\s*'\"['\"]", setup_file, re.MULTILINE)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
