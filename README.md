@@ -9,5 +9,3 @@
 
 1. FOR `TestPyPi`: In the push message use the keyword `.test`.
 2. FOR `PyPi`: In the push message use the keyword `.deploy`.
-
-# TODO: UPDATE README.md
