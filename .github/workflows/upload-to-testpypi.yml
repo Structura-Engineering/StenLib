@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $(python .github/scripts/get_version.py)
+          tag_name: v$(python .github/scripts/get_version.py)
           draft: false
           prerelease: false
 
