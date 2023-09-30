@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check for keyword in commit message
         id: keyword_check
-        run: echo "contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -q '.deploy_test' && echo true || echo false)" >> $GITHUB_ENV
+        run: echo "contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -q '.deploytest' && echo true || echo false)" >> $GITHUB_ENV
 
       - name: Conditional Step
         if: steps.keyword_check.outputs.contains_keyword == 'true'
@@ -31,14 +31,21 @@ jobs:
           pip install build
           pip install twine
 
+      - name: Extract version from setup.py
+        id: extract_version
+        run: |
+          version=$(grep -oP "version\s*=\s*'\K[^']*" setup.py)
+          echo "::set-output name=version::$version"
+        shell: bash
+
+      - name: Create & Push tag
+        run: |
+          git tag -a v${{ steps.extract_version.outputs.version }} -m "Release version v${{ steps.extract_version.outputs.version }}"
+          git push origin v${{ steps.extract_version.outputs.version }}
+        shell: bash 
+
       - name: Build package
         run: python -m build
-
-      - name: Create tag
-        run: |
-          version=$(python .github/scripts/get_version.py)
-          git tag $version
-          git push origin $version
 
       - name: Create GitHub Release
         id: create_release
@@ -46,7 +53,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v$(python .github/scripts/get_version.py)
+          tag_name: ${{ steps.extract_version.outputs.version }}
           draft: false
           prerelease: false
 
