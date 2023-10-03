@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, Iterable, List, Union
+from typing import Any, Dict, Iterable, List, Union
 
 
 class QeLoadedData:
@@ -102,25 +102,28 @@ class QeBaseClass:
             with open(os.path.join(QeBaseClass.data_path(), filename), "r") as file:
                 data = json.load(file)
                 attr_name = filename.split(".")[0].upper().replace("_", "")
-                loaded_data = QeLoadedData(data)
-                setattr(cls, attr_name, loaded_data)
-
-    # TODO: Make sure you can add/remove anything not just lists.
+                setattr(cls, attr_name, QeLoadedData(data))
 
     @classmethod
-    def add_data(cls, key: str) -> None:
+    def add_data(cls, key: str, list_name: str, data: Any) -> None:
         """
         Add data for QE.
 
         Args:
             key (str): The key.
+            list_name (str): The list name.
+            data (Any): The data.
         """
+        getattr(getattr(cls, key), list_name, []).append(data)
 
     @classmethod
-    def remove_data(cls, key: str) -> None:
+    def remove_data(cls, key: str, list_name: str, data: Any) -> None:
         """
         Remove data for QE.
 
         Args:
             key (str): The key.
+            list_name (str): The list name.
+            data (Any): The data.
         """
+        getattr(getattr(cls, key), list_name, []).remove(data)
