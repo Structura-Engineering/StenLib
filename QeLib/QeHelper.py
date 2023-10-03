@@ -3,19 +3,24 @@ import random
 import secrets
 import string
 
-CHARS = string.ascii_letters + string.digits
-
 
 class QeHelper:
     """A collection of helper functions.
+
+    Attributes:
+        CHARS (str): A string containing all alphanumeric characters.
 
     Methods:
         alphanumeric_id_generator(char_len: int = 6, use_secrets: bool = False) -> str:
             Generate a random alphanumeric ID.
     """
 
-    @staticmethod
-    def alphanumeric_id_generator(char_len: int = 6, use_secrets: bool = False) -> str:
+    CHARS = string.ascii_letters + string.digits
+
+    @classmethod
+    def alphanumeric_id_generator(
+        cls, char_len: int = 6, use_secrets: bool = False
+    ) -> str:
         """Generate a random alphanumeric ID.
 
         Args:
@@ -36,7 +41,7 @@ class QeHelper:
             '2y6fRk5n8T'
         """
         randomizer = secrets if use_secrets else random
-        return "".join(randomizer.choice(CHARS) for _ in range(abs(char_len)))
+        return "".join(randomizer.choice(cls.CHARS) for _ in range(abs(char_len)))
 
     @staticmethod
     def data_path_generator() -> str:

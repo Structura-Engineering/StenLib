@@ -49,8 +49,8 @@
   "python.analysis.importFormat": "relative",
   "python.analysis.inlayHints.pytestParameters": true,
   "python.analysis.typeCheckingMode": "basic",
-  "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.enableMultiLinePasteWarning": false,
+  "workbench.colorTheme": "Monokai Dimmed",
   "workbench.editorAssociations": {
     "*.db": "default",
     "*.pyd": "default"
