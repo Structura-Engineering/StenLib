@@ -1,3 +1,4 @@
+import os
 import random
 import secrets
 import string
@@ -6,8 +7,7 @@ CHARS = string.ascii_letters + string.digits
 
 
 class QeHelper:
-    """
-    A collection of helper functions.
+    """A collection of helper functions.
 
     Methods:
         alphanumeric_id_generator(char_len: int = 6, use_secrets: bool = False) -> str:
@@ -16,8 +16,7 @@ class QeHelper:
 
     @staticmethod
     def alphanumeric_id_generator(char_len: int = 6, use_secrets: bool = False) -> str:
-        """
-        Generate a random alphanumeric ID.
+        """Generate a random alphanumeric ID.
 
         Args:
             char_len (int, optional):
@@ -38,3 +37,14 @@ class QeHelper:
         """
         randomizer = secrets if use_secrets else random
         return "".join(randomizer.choice(CHARS) for _ in range(abs(char_len)))
+
+    @staticmethod
+    def data_path_generator() -> str:
+        """Create the data path.
+
+        Returns:
+            str: The path to the data directory.
+        """
+        data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+        os.makedirs(data_path, exist_ok=True)
+        return data_path

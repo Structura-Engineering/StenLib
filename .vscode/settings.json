@@ -1,23 +1,23 @@
 {
-  "workbench.startupEditor": "none",
+  "cmake.configureOnOpen": true,
   "code-runner.clearPreviousOutput": true,
-  "code-runner.runInTerminal": true,
-  "code-runner.executorMap": { "python": "$pythonPath -u $fullFileName" },
-  "C_Cpp.errorSquiggles": "enabled",
-
-  "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.inlayHints.pytestParameters": true,
-  "python.analysis.useLibraryCodeForTypes": true,
-  "python.analysis.autoImportCompletions": true,
-  "python.analysis.autoSearchPaths": true,
-  "python.analysis.completeFunctionParens": true,
-  "python.analysis.diagnosticMode": "workspace",
-  "python.analysis.diagnosticSeverityOverrides": {
-    "reportWildcardImportFromLibrary": "none"
+  "code-runner.executorMap": {
+    "python": "$pythonPath -u $fullFileName"
   },
-  "python.analysis.extraPaths": ["./QeLib"],
-  "python.analysis.importFormat": "relative",
-
+  "code-runner.runInTerminal": true,
+  "C_Cpp.errorSquiggles": "enabled",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
@@ -25,9 +25,36 @@
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true
   },
-
-  "jupyter.notebookFileRoot": "${workspaceFolder}/src",
-
+  "deepsource.installationUrl": "https://app.deepsource.com",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": true,
+    "scminput": false
+  },
+  "git.autofetch": true,
   "git.enableSmartCommit": true,
-  "git.autofetch": true
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportWildcardImportFromLibrary": "none"
+  },
+  "python.analysis.extraPaths": [
+    "./QeLib"
+  ],
+  "python.analysis.importFormat": "relative",
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "workbench.editorAssociations": {
+    "*.db": "default",
+    "*.pyd": "default"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none"
 }
