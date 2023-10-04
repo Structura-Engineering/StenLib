@@ -12,28 +12,29 @@ class QeDataBase(QeHelper):
         DEFAULT_DB_FILE_NAME (str): The default name for the database file.
 
     Methods:
-        _connect_to_database(file_name: Optional[str] = None) -> sqlite3.Connection:
+        connect_to_database(file_name: Optional[str] = None) -> sqlite3.Connection:
             Connect to the database.
         create_table(table_name: str, file_name: Optional[str] = None) -> None:
             Create a table in the database.
         delete_table(table_name: str, file_name: Optional[str] = None) -> None:
             Delete a table in the database.
-        insert_data(data: dict, table_name: str, file_name: Optional[str] = None) -> None:
+        insert_data(
+            data: dict, table_name: str, file_name: Optional[str] = None) -> None:
             Insert data into the database.
-        delete_data(data: dict, table_name: str, file_name: Optional[str] = None) -> None:
+        delete_data(
+            data: dict, table_name: str, file_name: Optional[str] = None) -> None:
             Delete data from the database.
     """
 
     DEFAULT_DB_FILE_NAME = "database"
 
     @classmethod
-    def _connect_to_database(
-        cls, file_name: Optional[str] = None
-    ) -> sqlite3.Connection:
+    def connect_to_database(cls, file_name: Optional[str] = None) -> sqlite3.Connection:
         """Connect to the database.
 
         Args:
-            file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
+            file_name (str): The name of the database file.
+                Default is DEFAULT_DB_FILE_NAME.
 
         Returns:
             sqlite3.Connection: A connection to the database.
@@ -42,59 +43,84 @@ class QeDataBase(QeHelper):
             file_name = cls.DEFAULT_DB_FILE_NAME
 
         return sqlite3.connect(
-            os.path.join(cls.data_path_generator(), f"{file_name}.sqlite")
+            os.path.join(
+                cls.data_path_generator(),
+                f"{file_name}.sqlite",
+            )
         )
 
     @classmethod
-    def create_table(cls, table_name: str, file_name: Optional[str] = None) -> None:
+    def create_table(
+        cls,
+        table_name: str,
+        file_name: Optional[str] = None,
+    ) -> None:
         """Create a table in the database.
 
         Args:
-            file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
+            file_name (str): The name of the database file.
+                Default is DEFAULT_DB_FILE_NAME.
             table_name (str): The name of the table to be created.
         """
-        with cls._connect_to_database(file_name) as conn:
+        with cls.connect_to_database(file_name) as conn:
             conn.execute(
                 f"CREATE TABLE IF NOT EXISTS {table_name} (id INTEGER PRIMARY KEY)"
             )
 
     @classmethod
-    def delete_table(cls, table_name: str, file_name: Optional[str] = None) -> None:
+    def delete_table(
+        cls,
+        table_name: str,
+        file_name: Optional[str] = None,
+    ) -> None:
         """Delete a table in the database.
 
         Args:
-            file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
+            file_name (str): The name of the database file.
+                Default is DEFAULT_DB_FILE_NAME.
             table_name (str): The name of the table to be deleted.
         """
-        with cls._connect_to_database(file_name) as conn:
+        with cls.connect_to_database(file_name) as conn:
             conn.execute(f"DROP TABLE IF EXISTS {table_name}")
 
     @classmethod
-    def insert_data(cls, data: dict, table_name: str, file_name: Optional[str] = None):
+    def insert_data(
+        cls,
+        data: dict,
+        table_name: str,
+        file_name: Optional[str] = None,
+    ):
         """Insert data into the database.
 
         Args:
             data (dict): The data to be inserted.
             table_name (str): The name of the table to insert the data into.
-            file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
+            file_name (str): The name of the database file.
+                Default is DEFAULT_DB_FILE_NAME.
         """
-        with cls._connect_to_database(file_name) as conn:
-            col = ",".join(data.keys())
-            val = ", ".join("?" for _ in data.values())
-            query = f"INSERT INTO {table_name} ({col}) VALUES ({val})"
+        with cls.connect_to_database(file_name) as conn:
+            cols = ",".join(data.keys())
+            vals = ", ".join("?" for _ in data.values())
+            query = f"INSERT INTO {table_name} ({cols}) VALUES ({vals})"
             conn.execute(query, tuple(data.values()))
 
     @classmethod
-    def delete_data(cls, data: dict, table_name: str, file_name: Optional[str] = None):
+    def delete_data(
+        cls,
+        data: dict,
+        table_name: str,
+        file_name: Optional[str] = None,
+    ):
         """delete data from the database.
 
         Args:
             data (dict): The data to be deleted.
             table_name (str): The name of the table to delete the data from.
-            file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
+            file_name (str): The name of the database file.
+                Default is DEFAULT_DB_FILE_NAME.
         """
-        with cls._connect_to_database(file_name) as conn:
-            cond = " AND ".join(f"{key} = ?" for key in data.keys())
-            val = tuple(data.values())
-            query = f"DELETE FROM {table_name} WHERE {cond}"
-            conn.execute(query, val)
+        with cls.connect_to_database(file_name) as conn:
+            phs = ", ".join("?" * len(data))
+            cols = ", ".join(data.keys())
+            query = f"DELETE FROM {table_name} WHERE ({cols}) IN (({phs}))"
+            conn.execute(query, tuple(data.values()))
