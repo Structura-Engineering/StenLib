@@ -100,8 +100,8 @@ class QeDataBase(QeHelper):
         """
         with cls.connect_to_database(file_name) as conn:
             cols = ",".join(data.keys())
-            vals = ", ".join("?" for _ in data.values())
-            query = f"INSERT INTO {table_name} ({cols}) VALUES ({vals})"
+            phs = ", ".join("?" * len(data))
+            query = f"INSERT INTO {table_name} ({cols}) VALUES ({phs})"
             conn.execute(query, tuple(data.values()))
 
     @classmethod
@@ -120,7 +120,7 @@ class QeDataBase(QeHelper):
                 Default is DEFAULT_DB_FILE_NAME.
         """
         with cls.connect_to_database(file_name) as conn:
-            phs = ", ".join("?" * len(data))
-            cols = ", ".join(data.keys())
-            query = f"DELETE FROM {table_name} WHERE ({cols}) IN (({phs}))"
-            conn.execute(query, tuple(data.values()))
+            cond = [(col, val) for col, val in data.items()]
+            where_clause = " AND ".join(f"{col} = ?" for col, _ in cond)
+            query = f"DELETE FROM {table_name} WHERE {where_clause}"
+            conn.execute(query, [val for _, val in cond])
