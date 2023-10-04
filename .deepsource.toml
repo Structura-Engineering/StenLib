@@ -11,3 +11,8 @@ name = "black"
 
 [[transformers]]
 name = "isort"
+
+test_patterns = \[  
+  "tests/\*\*",  
+  "test_\*.py"  
+]
