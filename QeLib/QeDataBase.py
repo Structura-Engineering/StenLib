@@ -18,6 +18,10 @@ class QeDataBase(QeHelper):
             Create a table in the database.
         delete_table(table_name: str, file_name: Optional[str] = None) -> None:
             Delete a table in the database.
+        insert_data(data: dict, table_name: str, file_name: Optional[str] = None) -> None:
+            Insert data into the database.
+        delete_data(data: dict, table_name: str, file_name: Optional[str] = None) -> None:
+            Delete data from the database.
     """
 
     DEFAULT_DB_FILE_NAME = "database"
@@ -74,7 +78,11 @@ class QeDataBase(QeHelper):
             table_name (str): The name of the table to insert the data into.
             file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
         """
-        # TODO: Implement insert_data
+        with cls._connect_to_database(file_name) as conn:
+            col = ",".join(data.keys())
+            val = ", ".join("?" for _ in data.values())
+            query = f"INSERT INTO {table_name} ({col}) VALUES ({val})"
+            conn.execute(query, tuple(data.values()))
 
     @classmethod
     def delete_data(cls, data: dict, table_name: str, file_name: Optional[str] = None):
@@ -85,4 +93,8 @@ class QeDataBase(QeHelper):
             table_name (str): The name of the table to delete the data from.
             file_name (str): The name of the database file. Default is DEFAULT_DB_FILE_NAME.
         """
-        # TODO: Implement delete_data
+        with cls._connect_to_database(file_name) as conn:
+            cond = " AND ".join(f"{key} = ?" for key in data.keys())
+            val = tuple(data.values())
+            query = f"DELETE FROM {table_name} WHERE {cond}"
+            conn.execute(query, val)
