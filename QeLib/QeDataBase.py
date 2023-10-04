@@ -120,7 +120,7 @@ class QeDataBase(QeHelper):
                 Default is DEFAULT_DB_FILE_NAME.
         """
         with cls.connect_to_database(file_name) as conn:
-            cond = [(col, val) for col, val in data.items()]
+            cond = list(data.items())
             where_clause = " AND ".join(f"{col} = ?" for col, _ in cond)
             query = f"DELETE FROM {table_name} WHERE {where_clause}"
             conn.execute(query, [val for _, val in cond])
