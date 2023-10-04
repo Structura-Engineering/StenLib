@@ -1,21 +1,11 @@
-import sqlite3
-from typing import Any, Optional
+from typing import Dict, List
 
 class QeDataBase:
     @classmethod
-    def connect_to_database(cls, file: str) -> sqlite3.Connection: ...
+    def write(cls, data: Dict[str, List[List[int]]], file_path: str) -> None: ...
     @classmethod
-    def insert_data(
-        cls, data: dict[Any, Any], table: str, file: Optional[str] = None
-    ) -> None: ...
+    def read(cls, file_path: str) -> Dict[str, List[List[int]]]: ...
     @classmethod
-    def delete_data(
-        cls,
-        data: Optional[dict] = None,
-        table: Optional[str] = None,
-        file: Optional[str] = None,
-    ) -> None: ...
+    def create(cls, file_path: str) -> None: ...
     @classmethod
-    def retrieve_data(
-        cls, data: dict, table: str, file: Optional[str] = None
-    ) -> dict: ...
+    def delete(cls, file_path: str) -> None: ...
