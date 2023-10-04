@@ -1,7 +1,9 @@
+import json
 import os
 import random
 import secrets
 import string
+from typing import Any
 
 
 class QeHelper:
@@ -27,7 +29,8 @@ class QeHelper:
             char_len (int, optional):
                 Absolute length of the generated ID. Defaults to 6.
             use_secrets (bool, optional):
-                If True, use the secrets module for more secure random choices. Defaults to False.
+                If True, use the secrets module for more secure random choices.
+                    Defaults to False.
 
         Returns:
             str: A randomly generated ID consisting of alphanumeric characters.
@@ -53,3 +56,27 @@ class QeHelper:
         data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
         os.makedirs(data_path, exist_ok=True)
         return data_path
+
+    @staticmethod
+    def stringification(data: Any) -> str:
+        """Convert data to strings.
+
+        Args:
+            data: The data to be prepared.
+
+        Returns:
+            str: The prepared data as a JSON string.
+        """
+        return json.dumps(data)
+
+    @staticmethod
+    def destringification(data: str) -> Any:
+        """Convert strings to data.
+
+        Args:
+            data (str): The fetched data as a JSON string.
+
+        Returns:
+            any: The processed data.
+        """
+        return json.loads(data)

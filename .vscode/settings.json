@@ -44,7 +44,8 @@
     "reportWildcardImportFromLibrary": "none"
   },
   "python.analysis.extraPaths": [
-    "./QeLib"
+    "./QeLib",
+    "./tests"
   ],
   "python.analysis.importFormat": "relative",
   "python.analysis.inlayHints.pytestParameters": true,

@@ -1,3 +1,5 @@
+from typing import Any
+
 class QeHelper:
     @staticmethod
     def alphanumeric_id_generator(
@@ -5,3 +7,7 @@ class QeHelper:
     ) -> str: ...
     @staticmethod
     def data_path_generator() -> str: ...
+    @staticmethod
+    def stringification(data: Any) -> str: ...
+    @staticmethod
+    def destringification(data: str) -> Any: ...

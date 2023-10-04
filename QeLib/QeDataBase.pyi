@@ -3,18 +3,16 @@ from typing import Optional
 
 class QeDataBase:
     @classmethod
-    def _connect_to_database(
-        cls, file_name: Optional[str] = None
-    ) -> sqlite3.Connection: ...
-    @classmethod
-    def create_table(cls, table_name: str, file_name: Optional[str] = None) -> None: ...
-    @classmethod
-    def delete_table(cls, table_name: str, file_name: Optional[str] = None) -> None: ...
+    def connect_to_database(cls, file: Optional[str] = None) -> sqlite3.Connection: ...
     @classmethod
     def insert_data(
-        cls, data: dict, table_name: str, file_name: Optional[str] = None
+        cls, data: dict, table: str, file: Optional[str] = None
     ) -> None: ...
     @classmethod
     def delete_data(
-        cls, data: dict, table_name: str, file_name: Optional[str] = None
+        cls, data: dict, table: str, file: Optional[str] = None
     ) -> None: ...
+    @classmethod
+    def retrieve_data(
+        cls, data: dict, table: str, file: Optional[str] = None
+    ) -> dict: ...
