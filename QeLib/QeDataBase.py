@@ -101,9 +101,3 @@ class QeDataBase(QeHelper):
             file_name (str): The name of the file (without extension).
         """
         os.remove(str(cls.load(file_name)))
-
-
-data = QeDataBase.read()
-data2 = QeDataBase.read("test")
-print(data)
-print(data2)
