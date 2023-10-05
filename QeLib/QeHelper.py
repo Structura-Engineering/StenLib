@@ -7,15 +7,7 @@ from typing import Any
 
 
 class QeHelper:
-    """A collection of helper functions.
-
-    Attributes:
-        CHARS (str): A string containing all alphanumeric characters.
-
-    Methods:
-        alphanumeric_id_generator(char_len: int = 6, use_secrets: bool = False) -> str:
-            Generate a random alphanumeric ID.
-    """
+    """A collection of helper functions."""
 
     CHARS = string.ascii_letters + string.digits
 
@@ -77,6 +69,6 @@ class QeHelper:
             data (str): The fetched data as a JSON string.
 
         Returns:
-            any: The processed data.
+            Any: The processed data.
         """
         return json.loads(data)

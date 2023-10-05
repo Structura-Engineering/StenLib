@@ -3,30 +3,29 @@ import unittest
 
 from QeLib.QeDataBase import QeDataBase
 
+# TODO fix tests not importing classes correctly.
+
 
 class TestQeDataBase(unittest.TestCase):
     def setUp(self):
-        self.file_path = "test.json"
-        self.data = {
-            "list1": [[1, 2, 3], [4, 5, 6]],
-            "list2": [[7, 8, 9], [10, 11, 12]],
-        }
+        self.test_file_name = "test_file"
+        self.test_data = {"test_key": [[1, 2], [3, 4]]}
 
     def tearDown(self):
-        if os.path.exists(self.file_path):
-            os.remove(self.file_path)
+        if os.path.exists(QeDataBase.get_json_file_path(self.test_file_name)):
+            os.remove(QeDataBase.get_json_file_path(self.test_file_name))
 
     def test_write_and_read(self):
-        QeDataBase.write(self.data, self.file_path)
-        result = QeDataBase.read(self.file_path)
-        self.assertEqual(result, self.data)
+        QeDataBase.write(self.test_data, self.test_file_name)
+        read_data = QeDataBase.read(self.test_file_name)
+        self.assertEqual(self.test_data, read_data)
 
     def test_create_and_delete(self):
-        QeDataBase.create(self.file_path)
-        self.assertTrue(os.path.exists(self.file_path))
-        QeDataBase.delete(self.file_path)
-        self.assertFalse(os.path.exists(self.file_path))
-
-
-if __name__ == "__main__":
-    unittest.main()
+        QeDataBase.create(self.test_file_name)
+        self.assertTrue(
+            os.path.exists(QeDataBase.get_json_file_path(self.test_file_name))
+        )
+        QeDataBase.delete(self.test_file_name)
+        self.assertFalse(
+            os.path.exists(QeDataBase.get_json_file_path(self.test_file_name))
+        )

@@ -23,7 +23,3 @@ class TestQeHelper(unittest.TestCase):
     def test_destringification(self):
         assert isinstance(QeHelper.destringification("{}"), dict)
         assert QeHelper.destringification('{"key": "value"}') == {"key": "value"}
-
-
-if __name__ == "__main__":
-    unittest.main()

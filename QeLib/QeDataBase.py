@@ -1,77 +1,70 @@
 import json
+import os
 from typing import Dict, List
 
+from QeHelper import QeHelper
 
-class QeDataBase:
-    """
-    A class for reading and writing data to a JSON file.
 
-    Attributes:
-        None
-
-    Methods:
-        write_to_json(cls, data: Dict[str, List[List[int]]], file_path: str) -> None:
-            Writes data to a JSON file.
-
-        read_from_json(cls, file_path: str) -> Dict[str, List[List[int]]]:
-            Retrieves data from a JSON file.
-    """
+class QeDataBase(QeHelper):
+    """A class for handling JSON data files related to QeHelper."""
 
     @classmethod
-    def write(cls, data: Dict[str, List[List[int]]], file_path: str) -> None:
+    def get_json_file_path(cls, file_name: str) -> str:
         """
-        Writes data to a JSON file.
+        Generate the file path for a JSON file.
 
         Args:
-            data (Dict[str, List[List[int]]]): The data to be written in dictionary format.
-            file_path (str): The path of the JSON file.
+            file_name (str): The name of the JSON file.
 
         Returns:
-            None
+            str: The full file path.
         """
-        with open(file_path, "w") as json_file:
+        return os.path.join(cls.data_path_generator(), f"{file_name}.json")
+
+    @classmethod
+    def write(cls, data: Dict[str, List[List[int]]], file_name: str) -> None:
+        """
+        Write data to a JSON file.
+
+        Args:
+            data (Dict[str, List[List[int]]]): The data to be written.
+            file_name (str): The name of the JSON file.
+        """
+        with open(cls.get_json_file_path(file_name), "w") as json_file:
             json.dump(data, json_file)
 
     @classmethod
-    def read(cls, file_path: str) -> Dict[str, List[List[int]]]:
+    def read(cls, file_name: str) -> Dict[str, List[List[int]]]:
         """
-        Retrieves data from a JSON file.
+        Read data from a JSON file.
 
         Args:
-            file_path (str): The path of the JSON file.
+            file_name (str): The name of the JSON file.
 
         Returns:
-            Dict[str, List[List[int]]]: The data retrieved in dictionary format.
+            Dict[str, List[List[int]]]: The read data.
         """
-        with open(file_path, "r") as json_file:
+        with open(cls.get_json_file_path(file_name), "r") as json_file:
             data = json.load(json_file)
         return data
 
     @classmethod
-    def create(cls, file_path: str) -> None:
+    def create(cls, file_name: str) -> None:
         """
-        Creates a JSON file.
+        Create a new JSON file.
 
         Args:
-            file_path (str): The path of the JSON file.
-
-        Returns:
-            None
+            file_name (str): The name of the JSON file.
         """
-        with open(file_path, "w") as json_file:
+        with open(cls.get_json_file_path(file_name), "w") as json_file:
             json.dump({}, json_file)
 
     @classmethod
-    def delete(cls, file_path: str) -> None:
+    def delete(cls, file_name: str) -> None:
         """
-        Deletes a JSON file.
+        Delete a JSON file.
 
         Args:
-            file_path (str): The path of the JSON file.
-
-        Returns:
-            None
+            file_name (str): The name of the JSON file to be deleted.
         """
-        import os
-
-        os.remove(file_path)
+        os.remove(cls.get_json_file_path(file_name))

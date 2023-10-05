@@ -67,4 +67,10 @@
   },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
+  "json.schemas": [
+    {
+      "fileMatch": ["*.json", "*.jsonc"],
+      "url": "https://json.schemastore.org/package"
+    }
+  ]  
 }
