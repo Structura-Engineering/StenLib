@@ -44,12 +44,7 @@ class QeDataBase(QeHelper):
             data (dict): The data to write.
             file_name (str): The name of the file (without extension).
         """
-        file_path = cls.load(file_name)
-        if isinstance(file_path, list):
-            raise ValueError(
-                "Expected a single file path, but got a list of file paths."
-            )
-        with open(file_path, "w") as json_file:
+        with open(str(cls.load(file_name)), "w") as json_file:
             json.dump(data, json_file)
 
     @classmethod
@@ -84,12 +79,7 @@ class QeDataBase(QeHelper):
         Args:
             file_name (str): The name of the file (without extension).
         """
-        file_path = cls.load(file_name)
-        if isinstance(file_path, list):
-            raise ValueError(
-                "Expected a single file path, but got a list of file paths."
-            )
-        with open(file_path, "w") as json_file:
+        with open(str(cls.load(file_name)), "w") as json_file:
             json.dump({}, json_file)
 
     @classmethod
