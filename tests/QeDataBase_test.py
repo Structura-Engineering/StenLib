@@ -12,8 +12,8 @@ class TestQeDataBase(unittest.TestCase):
         self.test_data = {"test_key": [[1, 2], [3, 4]]}
 
     def tearDown(self):
-        if os.path.exists(QeDataBase.get_json_file_path(self.test_file_name)):
-            os.remove(QeDataBase.get_json_file_path(self.test_file_name))
+        if os.path.exists(str(QeDataBase.load(self.test_file_name))):
+            os.remove(str(QeDataBase.load(self.test_file_name)))
 
     def test_write_and_read(self):
         QeDataBase.write(self.test_data, self.test_file_name)
@@ -22,10 +22,6 @@ class TestQeDataBase(unittest.TestCase):
 
     def test_create_and_delete(self):
         QeDataBase.create(self.test_file_name)
-        self.assertTrue(
-            os.path.exists(QeDataBase.get_json_file_path(self.test_file_name))
-        )
+        self.assertTrue(os.path.exists(str(QeDataBase.load(self.test_file_name))))
         QeDataBase.delete(self.test_file_name)
-        self.assertFalse(
-            os.path.exists(QeDataBase.get_json_file_path(self.test_file_name))
-        )
+        self.assertFalse(os.path.exists(str(QeDataBase.load(self.test_file_name))))

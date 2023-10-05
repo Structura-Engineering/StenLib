@@ -1,51 +1,79 @@
 import json
 import os
-from typing import Dict, List
+from pathlib import Path
+from typing import Dict, List, Optional, Union
 
 from QeHelper import QeHelper
 
 
 class QeDataBase(QeHelper):
-    """A class for handling JSON data files related to QeHelper."""
+    """A class for managing JSON files."""
 
     @classmethod
-    def get_json_file_path(cls, file_name: str) -> str:
+    def load(
+        cls, file_name: Optional[Union[str, None]] = None
+    ) -> Union[List[Path], Path]:
         """
-        Generate the file path for a JSON file.
+        Load data from a JSON file.
 
         Args:
-            file_name (str): The name of the JSON file.
+            file_name (str, optional):
+                The name of the file (without extension). Defaults to None.
 
         Returns:
-            str: The full file path.
+            Union[List[Path], Path]: If file_name is None,
+                returns a list of Path objects for all JSON files in the directory.
+            If file_name is provided, returns the Path to the specific file.
         """
-        return os.path.join(cls.data_path_generator(), f"{file_name}.json")
+        dir: Path = Path(cls.data_path_generator())
+        if file_name:
+            return dir / f"{file_name}.json"
+        else:
+            return [
+                dir / filename
+                for filename in os.listdir(dir)
+                if filename.endswith(".json")
+            ]
 
     @classmethod
-    def write(cls, data: Dict[str, List[List[int]]], file_name: str) -> None:
+    def write(cls, data: Dict, file_name: str) -> None:
         """
         Write data to a JSON file.
 
         Args:
-            data (Dict[str, List[List[int]]]): The data to be written.
-            file_name (str): The name of the JSON file.
+            data (dict): The data to write.
+            file_name (str): The name of the file (without extension).
         """
-        with open(cls.get_json_file_path(file_name), "w") as json_file:
+        file_path = cls.load(file_name)
+        if isinstance(file_path, list):
+            raise ValueError(
+                "Expected a single file path, but got a list of file paths."
+            )
+        with open(file_path, "w") as json_file:
             json.dump(data, json_file)
 
     @classmethod
-    def read(cls, file_name: str) -> Dict[str, List[List[int]]]:
+    def read(cls, file_name: Optional[Union[str, None]] = None) -> Dict:
         """
         Read data from a JSON file.
 
         Args:
-            file_name (str): The name of the JSON file.
+            file_name (str, optional):
+                The name of the file (without extension). Defaults to None.
+                    if None loads all files.
 
         Returns:
-            Dict[str, List[List[int]]]: The read data.
+            dict: The data from the file.
         """
-        with open(cls.get_json_file_path(file_name), "r") as json_file:
-            data = json.load(json_file)
+        data: Dict = {}
+        file_path = cls.load(file_name)
+        if isinstance(file_path, list):
+            for filename in file_path:
+                with open(filename, "r") as json_file:
+                    data.update(json.load(json_file))
+        else:
+            with open(file_path, "r") as json_file:
+                data = json.load(json_file)
         return data
 
     @classmethod
@@ -54,9 +82,14 @@ class QeDataBase(QeHelper):
         Create a new JSON file.
 
         Args:
-            file_name (str): The name of the JSON file.
+            file_name (str): The name of the file (without extension).
         """
-        with open(cls.get_json_file_path(file_name), "w") as json_file:
+        file_path = cls.load(file_name)
+        if isinstance(file_path, list):
+            raise ValueError(
+                "Expected a single file path, but got a list of file paths."
+            )
+        with open(file_path, "w") as json_file:
             json.dump({}, json_file)
 
     @classmethod
@@ -65,6 +98,12 @@ class QeDataBase(QeHelper):
         Delete a JSON file.
 
         Args:
-            file_name (str): The name of the JSON file to be deleted.
+            file_name (str): The name of the file (without extension).
         """
-        os.remove(cls.get_json_file_path(file_name))
+        os.remove(str(cls.load(file_name)))
+
+
+data = QeDataBase.read()
+data2 = QeDataBase.read("test")
+print(data)
+print(data2)
