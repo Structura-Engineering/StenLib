@@ -8,7 +8,6 @@ setup(
     license=open("LICENSE.md").read(),
     url="https://github.com/Illyrius666/QeLib",
     project_urls={"Bug Tracker": "https://github.com/Illyrius666/QeLib/issues"},
-    install_requires=["mypy"],
     packages=find_packages(),
     python_requires=">=3.11.5",
     package_data={

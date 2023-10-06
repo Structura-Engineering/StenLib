@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate .pyi stub files
         run: |
-          mypy --stub-output ./
+          stubgen -p your_module -o .
 
       - name: Create & Push tag
         id: create_tag
