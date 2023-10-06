@@ -18,10 +18,10 @@ jobs:
         if: steps.keyword_check.outputs.contains_keyword == 'true'
         run: echo "Keyword found in commit message. Running deployment steps..."
 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - name: Set up Python
-        uses: actions/setup-python@master
+        uses: actions/setup-python@main
         with:
           python-version: "3.11.5"
 
