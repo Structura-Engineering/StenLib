@@ -35,7 +35,7 @@ jobs:
       - name: Generate .pyi stub files
         run: |
           PACKAGE_NAME=$(ls -d */ | grep -v 'dist\|build' | head -n 1 | cut -f1 -d'/')
-          stubgen -p $PACKAGE_NAME -o .
+          find $PACKAGE_NAME -name "*.py" ! -name "__init__.py" -exec stubgen -o . {} \;
 
       - name: Create & Push tag
         id: create_tag
