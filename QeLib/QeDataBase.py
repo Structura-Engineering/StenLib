@@ -25,15 +25,14 @@ class QeDataBase(QeHelper):
                 returns a list of Path objects for all JSON files in the directory.
             If file_name is provided, returns the Path to the specific file.
         """
-        dir: Path = Path(cls.data_path_generator())
+        data_dir: Path = Path(cls.data_path_generator())
         if file_name:
-            return dir / f"{file_name}.json"
-        else:
-            return [
-                dir / filename
-                for filename in os.listdir(dir)
-                if filename.endswith(".json")
-            ]
+            return data_dir / f"{file_name}.json"
+        return [
+            data_dir / filename
+            for filename in os.listdir(data_dir)
+            if filename.endswith(".json")
+        ]
 
     @classmethod
     def write(cls, data: Dict, file_name: str) -> None:
