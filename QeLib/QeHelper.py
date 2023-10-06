@@ -9,7 +9,7 @@ from typing import Any
 class QeHelper:
     """A collection of helper functions."""
 
-    CHARS = string.ascii_letters + string.digits
+    CHARS: str = string.ascii_letters + string.digits
 
     @classmethod
     def alphanumeric_id_generator(
