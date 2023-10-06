@@ -1,74 +1,67 @@
-import json
-import os
-import random
-import secrets
-import string
-from typing import Any
+from typing import Optional
+
+from PySide6.QtCore import QPoint, Qt
+from PySide6.QtWidgets import QApplication, QGraphicsView, QStackedWidget, QWidget
 
 
 class QeHelper:
     """A collection of helper functions."""
 
-    CHARS: str = string.ascii_letters + string.digits
+    @staticmethod
+    def center_ui_on_screen(ui: QWidget) -> None:
+        """
+        Centers a QWidget on the screen.
+
+        Args:
+            ui (QWidget): The QWidget to be centered on the screen.
+        """
+        ui.move(
+            QApplication.primaryScreen().geometry().center()
+            - QPoint(ui.size().width() // 2, ui.size().height() // 2)
+        )
+
+    @staticmethod
+    def set_ui_size(ui: QWidget, size: Optional[tuple[int, int]] = None) -> None:
+        """
+        Sets the size of a QWidget.
+
+        Args:
+            ui (QWidget): The QWidget whose size is to be set.
+            size (tuple[int, int], optional): The width and height to set the QWidget.
+                If None, it will be set to the default size hint.
+
+        """
+        ui.resize(*size) if size else ui.resize(ui.sizeHint())
 
     @classmethod
-    def alphanumeric_id_generator(
-        cls, char_len: int = 6, use_secrets: bool = False
-    ) -> str:
-        """Generate a random alphanumeric ID.
+    def toggle_ui_visibility(cls, uis: list[QWidget]) -> None:
+        """
+        Toggles the visibility of a list of QWidgets.
 
         Args:
-            char_len (int, optional):
-                Absolute length of the generated ID. Defaults to 6.
-            use_secrets (bool, optional):
-                If True, use the secrets module for more secure random choices.
-                    Defaults to False.
-
-        Returns:
-            str: A randomly generated ID consisting of alphanumeric characters.
-
-        Example:
-            >>> alphanumeric_id_generator()
-            'r9g3Yx'
-            >>> alphanumeric_id_generator(10)
-            '1z7y6W1h5Z'
-            >>> alphanumeric_id_generator(-10)
-            '2y6fRk5n8T'
+            uis (list[QWidget]): List of QWidgets whose visibility will be toggled.
         """
-        randomizer = secrets if use_secrets else random
-        return "".join(randomizer.choice(cls.CHARS) for _ in range(abs(char_len)))
+        for ui in uis:
+            ui.setVisible(not ui.isVisible())
+            if ui.isVisible():
+                cls.center_ui_on_screen(ui)
 
     @staticmethod
-    def data_path_generator() -> str:
-        """Create the data path.
-
-        Returns:
-            str: The path to the data directory.
+    def switch_modules(module: QStackedWidget) -> None:
         """
-        data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
-        os.makedirs(data_path, exist_ok=True)
-        return data_path
-
-    @staticmethod
-    def stringification(data: Any) -> str:
-        """Convert data to strings.
+        Switches the current module in a QStackedWidget.
 
         Args:
-            data: The data to be prepared.
-
-        Returns:
-            str: The prepared data as a JSON string.
+            module (QStackedWidget): The QStackedWidget containing the modules.
         """
-        return json.dumps(data)
+        module.setCurrentIndex((module.currentIndex() + 1) % module.count())
 
     @staticmethod
-    def destringification(data: str) -> Any:
-        """Convert strings to data.
+    def fit_scene_in_view(instance: QGraphicsView) -> None:
+        """
+        Fits the scene inside a QGraphicsView while maintaining aspect ratio.
 
         Args:
-            data (str): The fetched data as a JSON string.
-
-        Returns:
-            Any: The processed data.
+            instance (QGraphicsView): The QGraphicsView containing the scene.
         """
-        return json.loads(data)
+        instance.fitInView(instance.sceneRect(), Qt.AspectRatioMode.KeepAspectRatio)

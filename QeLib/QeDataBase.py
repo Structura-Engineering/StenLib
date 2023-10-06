@@ -3,10 +3,10 @@ import os
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
-from QeHelper import QeHelper
+from QeUtils import QeUtils
 
 
-class QeDataBase(QeHelper):
+class QeDataBase(QeUtils):
     """A class for managing JSON files."""
 
     @classmethod
