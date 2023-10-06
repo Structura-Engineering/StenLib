@@ -10,6 +10,10 @@
     "editor.defaultFormatter": "vscode.css-language-features",
     "editor.formatOnSave": true
   },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.formatOnSave": true
@@ -31,6 +35,10 @@
       "source.organizeImports": true
     },
     "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
     "editor.formatOnSave": true
   },
   "deepsource.installationUrl": "https://app.deepsource.com",

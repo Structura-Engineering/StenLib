@@ -31,17 +31,20 @@ jobs:
           pip install build
           pip install twine
 
-      - name: Extract version from setup.py
-        id: extract_version
-        run: |
-          version=$(awk -F"'" '/version/ {print $2}' setup.py)
-          echo "::set-output name=version::$version"
-
       - name: Create & Push tag
         run: |
-          git tag -a v${{ steps.extract_version.outputs.version }} -m "Release version v${{ steps.extract_version.outputs.version }}"
-          git push origin v${{ steps.extract_version.outputs.version }}
-        shell: bash 
+          TAG=$(echo '${{ github.event.head_commit.message }}' | grep -oP '.tag\[\K(.*?)(?=\])')
+          if [ -n "$TAG" ]; then
+            git tag $TAG
+            git push origin $TAG
+          else
+            TAG="modify manually"
+            git tag $TAG
+            git push origin $TAG
+            echo "No tag found in commit message. Using default tag."
+          fi
+          echo "RELEASE_VERSION=$TAG" >> $GITHUB_ENV
+        shell: bash
 
       - name: Build package
         run: python -m build
@@ -52,8 +55,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.extract_version.outputs.version }}
-          draft: false 
+          tag_name: ${{ env.RELEASE_VERSION }}
+          draft: false
           prerelease: false
 
       - name: Publish package to TestPyPI

@@ -38,11 +38,21 @@ jobs:
         id: get_version
         run: |
           echo "::set-output name=version::$(python -c 'import re; with open(\"setup.py\") as f: print(re.search(r\"'version': '(.+?)'\", f.read()).group(1))')"
-      
-      - name: Create tag
+
+      - name: Create & Push tag
         run: |
-          git tag ${{ steps.get_version.outputs.version }}
-          git push origin ${{ steps.get_version.outputs.version }}
+          TAG=$(echo '${{ github.event.head_commit.message }}' | grep -oP '.tag\[\K(.*?)(?=\])')
+          if [ -n "$TAG" ]; then
+            git tag $TAG
+            git push origin $TAG
+          else
+            TAG="modify manually"
+            git tag $TAG
+            git push origin $TAG
+            echo "No tag found in commit message. Using default tag."
+          fi
+          echo "RELEASE_VERSION=$TAG" >> $GITHUB_ENV
+        shell: bash
 
       - name: Create GitHub Release
         id: create_release
@@ -50,7 +60,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.version }}
+          tag_name: ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
 
