@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
-from QeUtils import QeUtils
+from StenLib.StenUtils import QeUtils
 
 
 class QeDataBase(QeUtils):
