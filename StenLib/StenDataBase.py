@@ -3,10 +3,10 @@ import os
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
-from StenLib.StenUtils import QeUtils
+from StenLib.StenUtils import StenUtils
 
 
-class QeDataBase(QeUtils):
+class StenDataBase(StenUtils):
     """A class for managing JSON files."""
 
     @classmethod
