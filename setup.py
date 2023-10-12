@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="StenLib",
-    version="0.0.38",
+    version="0.0.39",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     license=open("LICENSE.md").read(),
@@ -13,6 +13,6 @@ setup(
     packages=find_packages(),
     python_requires=">=3.11.5",
     package_data={
-        "*": ["data/*.json", "py.typed", "*.pyi"],
+        "*": ["*.py", "data/*.json", "py.typed", "*.pyi"],
     },
 )
