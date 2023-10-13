@@ -4,7 +4,7 @@ import secrets
 import string
 
 
-class StenUtils:
+class Utils:
     """A collection of utility functions."""
 
     CHARS: str = string.ascii_letters + string.digits

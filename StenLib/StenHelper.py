@@ -4,7 +4,7 @@ from PySide6.QtCore import QPoint, Qt
 from PySide6.QtWidgets import QApplication, QGraphicsView, QStackedWidget, QWidget
 
 
-class StenHelper:
+class Helper:
     """A collection of helper functions."""
 
     @staticmethod
