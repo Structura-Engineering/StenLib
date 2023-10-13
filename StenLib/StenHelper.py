@@ -1,18 +1,7 @@
 from typing import List, Optional, Tuple
 
 from PySide6.QtCore import QPoint, Qt
-from PySide6.QtWidgets import (
-    QApplication,
-    QFormLayout,
-    QGraphicsView,
-    QGridLayout,
-    QHBoxLayout,
-    QLayout,
-    QStackedLayout,
-    QStackedWidget,
-    QVBoxLayout,
-    QWidget,
-)
+from PySide6.QtWidgets import QApplication, QGraphicsView, QStackedWidget, QWidget
 
 
 class StenHelper:
@@ -76,47 +65,3 @@ class StenHelper:
             instance (QGraphicsView): The QGraphicsView containing the scene.
         """
         instance.fitInView(instance.sceneRect(), Qt.AspectRatioMode.KeepAspectRatio)
-
-    @staticmethod
-    def layout_handler(layout_type: str = "VBox") -> QLayout:
-        """
-        Initialize the LayoutHandler with a specified layout type.
-
-        Args:
-            layout_type (str): Type of layout.
-                Options: 'VBox', 'HBox', 'Grid', 'Form', or 'Stacked'.
-                Default is 'VBox'.
-
-        Returns:
-            QLayout: A layout object.
-        """
-        return {
-            "VBox": QVBoxLayout,
-            "HBox": QHBoxLayout,
-            "Grid": QGridLayout,
-            "Form": QFormLayout,
-            "Stacked": QStackedLayout,
-        }.get(layout_type, QVBoxLayout)()
-
-    @staticmethod
-    def margins_handler(
-        parent: QWidget, margins: Optional[Tuple[int, int, int, int]] = None
-    ) -> Tuple[int, int, int, int]:
-        """
-        Initialize the MarginsHandler with a specified margins.
-
-        Args:
-            margins (Tuple[int, int, int, int]): Margins for a layout.
-                Default is parent's margins.
-
-        Returns:
-            Tuple[int, int, int, int]: A tuple of margins.
-        """
-        pmargins = parent.contentsMargins()
-        return (
-            margins
-            if margins is not None
-            and all(isinstance(i, int) for i in margins)
-            and len(margins) == 4
-            else (pmargins.left(), pmargins.top(), pmargins.right(), pmargins.bottom())
-        )
