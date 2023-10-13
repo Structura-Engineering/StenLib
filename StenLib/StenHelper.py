@@ -1,7 +1,18 @@
-from typing import Optional
+from typing import List, Optional, Tuple
 
 from PySide6.QtCore import QPoint, Qt
-from PySide6.QtWidgets import QApplication, QGraphicsView, QStackedWidget, QWidget
+from PySide6.QtWidgets import (
+    QApplication,
+    QFormLayout,
+    QGraphicsView,
+    QGridLayout,
+    QHBoxLayout,
+    QLayout,
+    QStackedLayout,
+    QStackedWidget,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class StenHelper:
@@ -21,7 +32,7 @@ class StenHelper:
         )
 
     @staticmethod
-    def set_ui_size(ui: QWidget, size: Optional[tuple[int, int]] = None) -> None:
+    def set_ui_size(ui: QWidget, size: Optional[Tuple[int, int]] = None) -> None:
         """
         Sets the size of a QWidget.
 
@@ -34,7 +45,7 @@ class StenHelper:
         ui.resize(*size) if size else ui.resize(ui.sizeHint())
 
     @classmethod
-    def toggle_ui_visibility(cls, uis: list[QWidget]) -> None:
+    def toggle_ui_visibility(cls, uis: List[QWidget]) -> None:
         """
         Toggles the visibility of a list of QWidgets.
 
@@ -65,3 +76,47 @@ class StenHelper:
             instance (QGraphicsView): The QGraphicsView containing the scene.
         """
         instance.fitInView(instance.sceneRect(), Qt.AspectRatioMode.KeepAspectRatio)
+
+    @staticmethod
+    def layout_handler(layout_type: str = "VBox") -> QLayout:
+        """
+        Initialize the LayoutHandler with a specified layout type.
+
+        Args:
+            layout_type (str): Type of layout.
+                Options: 'VBox', 'HBox', 'Grid', 'Form', or 'Stacked'.
+                Default is 'VBox'.
+
+        Returns:
+            QLayout: A layout object.
+        """
+        return {
+            "VBox": QVBoxLayout,
+            "HBox": QHBoxLayout,
+            "Grid": QGridLayout,
+            "Form": QFormLayout,
+            "Stacked": QStackedLayout,
+        }.get(layout_type, QVBoxLayout)()
+
+    @staticmethod
+    def margins_handler(
+        parent: QWidget, margins: Optional[Tuple[int, int, int, int]] = None
+    ) -> Tuple[int, int, int, int]:
+        """
+        Initialize the MarginsHandler with a specified margins.
+
+        Args:
+            margins (Tuple[int, int, int, int]): Margins for a layout.
+                Default is parent's margins.
+
+        Returns:
+            Tuple[int, int, int, int]: A tuple of margins.
+        """
+        pmargins = parent.contentsMargins()
+        return (
+            margins
+            if margins is not None
+            and all(isinstance(i, int) for i in margins)
+            and len(margins) == 4
+            else (pmargins.left(), pmargins.top(), pmargins.right(), pmargins.bottom())
+        )
