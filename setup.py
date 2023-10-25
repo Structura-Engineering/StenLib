@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="StenLib",
-    version="0.0.43",
+    version="0.0.44",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     license=open("LICENSE.md").read(),
@@ -11,7 +11,7 @@ setup(
         "Bug Tracker": "https://github.com/Structura-Engineering/StenLib/issues"
     },
     packages=find_packages(),
-    python_requires=">=3.11.5",
+    python_requires=">=3.12",
     package_data={
         "*": ["*.py", "data/*.json", "py.typed", "*.pyi"],
     },
