@@ -14,10 +14,6 @@ jobs:
         id: keyword_check
         run: echo "contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -qP '.(deploy|test)\b' && echo true || echo false)" >> $GITHUB_ENV
 
-      - name: Conditional Step
-        if: steps.keyword_check.outputs.contains_keyword == 'true'
-        run: echo "Keyword found in commit message. Running deployment steps..."
-
       - uses: actions/checkout@main
 
       - name: Set up Python
@@ -68,14 +64,14 @@ jobs:
           prerelease: false
 
       - name: Publish package to PyPI
-        if: steps.keyword_check.outputs.contains_keyword == 'true' && contains(github.event.head_commit.message, '.deploy')
+        if: contains(github.event.head_commit.message, '.deploy')
         run: twine upload dist/*
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
       - name: Publish package to TestPyPI
-        if: steps.keyword_check.outputs.contains_keyword == 'true' && contains(github.event.head_commit.message, '.test')
+        if: contains(github.event.head_commit.message, '.test')
         run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
         env:
           TWINE_USERNAME: ${{ secrets.TESTPYPI_USERNAME }}
