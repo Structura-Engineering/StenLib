@@ -46,3 +46,9 @@ class Utils:
         data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
         os.makedirs(data_path, exist_ok=True)
         return data_path
+
+    @staticmethod
+    def read_file(filename: str) -> str:
+        """Read file"""
+        with open(filename) as f:
+            return f.read()

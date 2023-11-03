@@ -1,3 +1,4 @@
 @echo off
-
-python -c "from setup import VENVSetup; VENVSetup()"
+python setup_venv.py
+pause
+cls
