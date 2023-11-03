@@ -1,9 +1,8 @@
-import os
 import subprocess
 
 from setuptools import find_packages, setup
 
-pip_packages: list[str] = ["setuptools", "types-setuptools"]
+pip_packages: list[str] = ["setuptools", "types-setuptools", "mypy"]
 
 
 class PackageSetup:
@@ -25,7 +24,7 @@ class PackageSetup:
 
         setup(
             name="StenLib",
-            version="0.0.50",
+            version="0.0.51",
             long_description=long_description,
             long_description_content_type="text/markdown",
             license=license,
@@ -53,15 +52,13 @@ class VENVSetup:
     def setup_venv(self) -> None:
         """Setup virtual environment and install pip packages"""
         subprocess.check_call(["python", "-m", "venv", ".venv"])
-        if os.name is "nt":
-            subprocess.check_call(
-                [".venv\\Scripts\\python", "-m", "pip", "install" "--upgrade"]
-                + pip_packages
-            )
-        else:
-            subprocess.check_call(
-                [".venv/bin/python", "-m", "pip", "install" "--upgrade"] + pip_packages
-            )
+        subprocess.check_call(
+            [".venv\\Scripts\\python", "-m", "pip", "install", "--upgrade"]
+            + pip_packages
+        )
+        subprocess.check_call(
+            [".venv\\Scripts\\python", "-m", "pip", "install", "--upgrade", "pip"]
+        )
 
 
 if __name__ == "__main__":
