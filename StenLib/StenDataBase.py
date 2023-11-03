@@ -1,7 +1,7 @@
 import json
 import os
 from pathlib import Path
-from typing import Dict, List, Optional, Union
+from typing import Optional, Union
 
 from StenLib.StenUtils import Utils
 
@@ -12,7 +12,7 @@ class DataBase(Utils):
     @classmethod
     def load(
         cls, file_name: Optional[Union[str, None]] = None
-    ) -> Union[List[Path], Path]:
+    ) -> Union[list[Path], Path]:
         """
         Load data from a JSON file.
 
@@ -21,7 +21,7 @@ class DataBase(Utils):
                 The name of the file (without extension). Defaults to None.
 
         Returns:
-            Union[List[Path], Path]: If file_name is None,
+            Union[list[Path], Path]: If file_name is None,
                 returns a list of Path objects for all JSON files in the directory.
             If file_name is provided, returns the Path to the specific file.
         """
@@ -35,7 +35,7 @@ class DataBase(Utils):
         ]
 
     @classmethod
-    def write(cls, data: Dict, file_name: str) -> None:
+    def write(cls, data: dict, file_name: str) -> None:
         """
         Write data to a JSON file.
 
@@ -47,7 +47,7 @@ class DataBase(Utils):
             json.dump(data, json_file)
 
     @classmethod
-    def read(cls, file_name: Optional[Union[str, None]] = None) -> Dict:
+    def read(cls, file_name: Optional[Union[str, None]] = None) -> dict:
         """
         Read data from a JSON file.
 
@@ -59,7 +59,7 @@ class DataBase(Utils):
         Returns:
             dict: The data from the file.
         """
-        data: Dict = {}
+        data: dict = {}
         file_path = cls.load(file_name)
         if isinstance(file_path, list):
             for filename in file_path:

@@ -24,7 +24,7 @@ class PackageSetup:
 
         setup(
             name="StenLib",
-            version="0.0.51",
+            version="0.0.52",
             long_description=long_description,
             long_description_content_type="text/markdown",
             license=license,
