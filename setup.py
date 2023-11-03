@@ -1,4 +1,6 @@
+import os
 import subprocess
+import sys
 
 from setuptools import find_packages, setup
 
@@ -21,14 +23,14 @@ class PackageSetup:
     def setup_package(self) -> None:
         """Setup package"""
         long_description: str = self.read_file("README.md")
-        license: str = self.read_file("LICENSE.md")
+        project_license: str = self.read_file("LICENSE.md")
 
         setup(
             name="StenLib",
             version="0.0.52",
             long_description=long_description,
             long_description_content_type="text/markdown",
-            license=license,
+            license=project_license,
             url="https://github.com/Structura-Engineering/StenLib",
             project_urls={
                 "Bug Tracker": "https://github.com/Structura-Engineering/StenLib/issues"
@@ -53,14 +55,15 @@ class VENVSetup:
     @staticmethod
     def setup_venv() -> None:
         """Setup virtual environment and install pip packages"""
-        subprocess.check_call(["python", "-m", "venv", ".venv"])
+        venv_dir = os.path.join(os.getcwd(), ".venv")
+        python_executable = os.path.join(venv_dir, "Scripts", "python")
+        pip_executable = os.path.join(venv_dir, "Scripts", "pip")
+
+        subprocess.check_call([sys.executable, "-m", "venv", venv_dir])
         subprocess.check_call(
-            [".venv\\Scripts\\python", "-m", "pip", "install", "--upgrade"]
-            + pip_packages
+            [python_executable, "-m", "pip", "install", "--upgrade"] + pip_packages
         )
-        subprocess.check_call(
-            [".venv\\Scripts\\python", "-m", "pip", "install", "--upgrade", "pip"]
-        )
+        subprocess.check_call([pip_executable, "install", "--upgrade", "pip"])
 
 
 if __name__ == "__main__":
