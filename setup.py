@@ -1,38 +1,31 @@
+import os
 import subprocess
 
 from setuptools import find_packages, setup
 
-
-class VENVSetup:
-    def __init__(self):
-        self.venv_packages = ["setuptools", "wheel", "twine", "types-setuptools"]
-
-    def install_and_upgrade_packages(self):
-        for package in self.venv_packages:
-            subprocess.check_call(
-                ["python", "-m", "pip", "install", "--upgrade", package]
-            )
-
-    def setup_package(self):
-        self.install_and_upgrade_packages()
+pip_packages: list[str] = ["setuptools", "types-setuptools"]
 
 
 class PackageSetup:
-    def __init__(self):
-        self.pip_packages = ["setuptools", "types-setuptools"]
+    """Setup package"""
+
+    def __init__(self) -> None:
+        """Setup package"""
         self.setup_package()
 
-    def read_file(self, filename):
+    def read_file(self, filename: str) -> str:
+        """Read file"""
         with open(filename) as f:
             return f.read()
 
-    def setup_package(self):
-        long_description = self.read_file("README.md")
-        license = self.read_file("LICENSE.md")
+    def setup_package(self) -> None:
+        """Setup package"""
+        long_description: str = self.read_file("README.md")
+        license: str = self.read_file("LICENSE.md")
 
         setup(
             name="StenLib",
-            version="0.0.47",
+            version="0.0.48",
             long_description=long_description,
             long_description_content_type="text/markdown",
             license=license,
@@ -40,7 +33,7 @@ class PackageSetup:
             project_urls={
                 "Bug Tracker": "https://github.com/Structura-Engineering/StenLib/issues"
             },
-            install_requires=self.pip_packages,
+            install_requires=pip_packages,
             packages=find_packages(),
             python_requires=">=3.12.0",
             package_data={
@@ -48,6 +41,27 @@ class PackageSetup:
             },
             zip_safe=False,
         )
+
+
+class VENVSetup:
+    """Setup virtual environment and install pip packages"""
+
+    def __init__(self) -> None:
+        """Setup virtual environment and install pip packages"""
+        self.setup_venv()
+
+    def setup_venv(self) -> None:
+        """Setup virtual environment and install pip packages"""
+        subprocess.check_call(["python", "-m", "venv", ".venv"])
+        if os.name is "nt":
+            subprocess.check_call(
+                [".venv\\Scripts\\python", "-m", "pip", "install" "--upgrade"]
+                + pip_packages
+            )
+        else:
+            subprocess.check_call(
+                [".venv/bin/python", "-m", "pip", "install" "--upgrade"] + pip_packages
+            )
 
 
 if __name__ == "__main__":

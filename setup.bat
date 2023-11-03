@@ -1,4 +1,4 @@
 @echo off
 
-REM Run the setup script
-python setup.py install --user
+REM Run the PackageSetup class from the setup script
+python -c "from setup import VENVSetup; VENVSetup()"
