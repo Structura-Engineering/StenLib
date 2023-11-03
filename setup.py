@@ -12,7 +12,8 @@ class PackageSetup:
         """Setup package"""
         self.setup_package()
 
-    def read_file(self, filename: str) -> str:
+    @staticmethod
+    def read_file(filename: str) -> str:
         """Read file"""
         with open(filename) as f:
             return f.read()
@@ -49,7 +50,8 @@ class VENVSetup:
         """Setup virtual environment and install pip packages"""
         self.setup_venv()
 
-    def setup_venv(self) -> None:
+    @staticmethod
+    def setup_venv() -> None:
         """Setup virtual environment and install pip packages"""
         subprocess.check_call(["python", "-m", "venv", ".venv"])
         subprocess.check_call(
