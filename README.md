@@ -14,6 +14,8 @@
 1. `.\setup.bat` (Windows) or `./setup.sh` (Linux)
 2. SET interpreter to `.venv\Scripts\python.exe` (Windows) or `.venv/bin/python` (Linux)
 
+3. TO UPDATE: deactivate venv and revert interpreter back to local python installation, then follow steps 1 & 2 again.
+
 ## Build package, Release on Github & Upload to (Test)PyPi:
 
 1. FOR `TestPyPi`: In the push message use the keyword `.test .tag[x]`.
