@@ -68,14 +68,14 @@ jobs:
           prerelease: false
 
       - name: Publish package to PyPI
-        if: steps.keyword_check.outputs.contains_keyword == 'true' && echo '${{ github.event.head_commit.message }}' | grep -q '.deploy'
+        if: steps.keyword_check.outputs.contains_keyword == 'true' && contains(github.event.head_commit.message, '.deploy')
         run: twine upload dist/*
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
       - name: Publish package to TestPyPI
-        if: steps.keyword_check.outputs.contains_keyword == 'true' && echo '${{ github.event.head_commit.message }}' | grep -q '.test'
+        if: steps.keyword_check.outputs.contains_keyword == 'true' && contains(github.event.head_commit.message, '.test')
         run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
         env:
           TWINE_USERNAME: ${{ secrets.TESTPYPI_USERNAME }}
