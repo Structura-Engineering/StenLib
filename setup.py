@@ -3,29 +3,24 @@ import subprocess
 from setuptools import find_packages, setup
 
 
+class VENVSetup:
+    def __init__(self):
+        self.venv_packages = ["setuptools", "wheel", "twine", "types-setuptools"]
+
+    def install_and_upgrade_packages(self):
+        for package in self.venv_packages:
+            subprocess.check_call(
+                ["python", "-m", "pip", "install", "--upgrade", package]
+            )
+
+    def setup_package(self):
+        self.install_and_upgrade_packages()
+
+
 class PackageSetup:
     def __init__(self):
         self.pip_packages = ["setuptools", "types-setuptools"]
-
-    def install_and_upgrade_packages(self):
-        for package in self.pip_packages:
-            if package == "StenLib":
-                subprocess.check_call(
-                    [
-                        "python",
-                        "-m",
-                        "pip",
-                        "install",
-                        "--upgrade",
-                        "-i",
-                        "https://test.pypi.org/simple/",
-                        package,
-                    ]
-                )
-            else:
-                subprocess.check_call(
-                    ["python", "-m", "pip", "install", "--upgrade", package]
-                )
+        self.setup_package()
 
     def read_file(self, filename):
         with open(filename) as f:
@@ -37,7 +32,7 @@ class PackageSetup:
 
         setup(
             name="StenLib",
-            version="0.0.46",
+            version="0.0.47",
             long_description=long_description,
             long_description_content_type="text/markdown",
             license=license,
@@ -53,3 +48,7 @@ class PackageSetup:
             },
             zip_safe=False,
         )
+
+
+if __name__ == "__main__":
+    PackageSetup()
