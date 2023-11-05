@@ -11,4 +11,4 @@ create(
     upgrade_deps=True,
 )
 
-run([".venv\\Scripts\\python", "-m", "pip", "install", "-r", "requirements.txt"])
+run([".venv\\Scripts\\python", "-m", "pip", "install", "-r", "requirements.txt"], check=True)
