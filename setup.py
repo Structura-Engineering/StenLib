@@ -4,7 +4,7 @@ from StenLib.StenUtils import Utils
 
 setup(
     name="StenLib",
-    version="0.0.54",
+    version="0.1.0",
     long_description=Utils.read_file("README.md"),
     long_description_content_type="text/markdown",
     license=Utils.read_file("LICENSE.md"),
