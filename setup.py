@@ -12,11 +12,7 @@ setup(
     project_urls={
         "Bug Tracker": "https://github.com/Structura-Engineering/StenLib/issues"
     },
-    install_requires=open(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "requirements.txt")
-    )
-    .read()
-    .splitlines(),
+    install_requires=open("requires.txt").read().splitlines(),
     packages=find_packages(),
     python_requires=">=3.12.0",
     package_data={
