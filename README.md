@@ -9,12 +9,14 @@
   </a>
 </p>
 
-## Setup the environment:
+## Setup the project:
 
-1. `.\setup.bat` (Windows) or `./setup.sh` (Linux)
-2. SET interpreter to `.venv\Scripts\python.exe` (Windows) or `.venv/bin/python` (Linux)
-
-3. TO UPDATE: deactivate venv and revert interpreter back to local python installation, then follow steps 1 & 2 again.
+1. Run the setup script:
+   - Windows: `.\setup.ps1`
+   - Linux: `./setup.sh`
+2. Set the interpreter to the Python executable in the virtual environment:
+   - Windows: `.venv\Scripts\python.exe`
+   - Linux: `.venv/bin/python`
 
 ## Build package, Release on Github & Upload to (Test)PyPi:
 
