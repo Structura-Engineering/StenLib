@@ -3,20 +3,25 @@ param (
 )
 
 try {
-    $pyFiles = Get-ChildItem -Path .\StenLib\ -Filter *.py
+    $pyFiles = Get-ChildItem -Path .\StenLib\ -Filter *.py -Recurse
     foreach ($file in $pyFiles) {
+        $relativePath = $file.FullName.Substring((Resolve-Path .\StenLib\\).Path.Length)
+        $relativeDir = (Split-Path -Path $relativePath -Parent) -replace '\\', '.'
         $baseName = $file.BaseName
+
         if ($baseName -notmatch "__") {
-            $testFile = New-Item -Path ".\tests\$baseName`_test.py" -ItemType File -Force
+            $testDir = New-Item -Path ".\tests\$relativeDir" -ItemType Directory -Force
+            $testFile = New-Item -Path "$testDir\$baseName`_test.py" -ItemType File -Force
+            $importPath = if ($relativeDir) { "StenLib.$relativeDir.$baseName" } else { "StenLib.$baseName" }
             $testCode = @"
 import pytest
-from StenLib.$baseName import *
+from $importPath import *
 
 def test_sample():
     assert True
 "@            
             Add-Content -Path $testFile.FullName -Value $testCode
-            Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Test file $baseName`_test.py created successfully."
+            Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Test file $relativeDir\$baseName`_test.py created successfully."
         }
     }
 } catch {
