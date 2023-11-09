@@ -6,11 +6,12 @@ try {
     $pyFiles = Get-ChildItem -Path .\StenLib\ -Filter *.py -Recurse
     foreach ($file in $pyFiles) {
         $relativePath = $file.FullName.Substring((Resolve-Path .\StenLib\\).Path.Length)
-        $relativeDir = (Split-Path -Path $relativePath -Parent) -replace '\\', '.'
+        $relativeDir = (Split-Path -Path $relativePath -Parent).Replace('\', '.')
         $baseName = $file.BaseName
 
         if ($baseName -notmatch "__") {
-            $testDir = New-Item -Path ".\tests\$relativeDir" -ItemType Directory -Force
+            $testDirPath = ".\tests\" + (Split-Path -Path $relativePath -Parent)
+            $testDir = New-Item -Path $testDirPath -ItemType Directory -Force
             $testFile = New-Item -Path "$testDir\$baseName`_test.py" -ItemType File -Force
             $importPath = if ($relativeDir) { "StenLib.$relativeDir.$baseName" } else { "StenLib.$baseName" }
             $testCode = @"
