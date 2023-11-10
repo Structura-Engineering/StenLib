@@ -25,6 +25,7 @@ def test_sample():
             Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Test file $relativeDir\$baseName`_test.py created successfully."
         }
     }
-} catch {
+}
+catch {
     Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "An error occurred while creating test files." -ForegroundColor Red;
 }

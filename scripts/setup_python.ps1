@@ -10,9 +10,11 @@ try {
         Start-Process -FilePath "python-installer.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1 Include_test=0" -Wait
         Remove-Item -Path "python-installer.exe"
         Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Python installation complete!"
-    } else {
+    }
+    else {
         Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Python is already installed."
     }
-} catch {
+}
+catch {
     Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "An error occurred while installing Python." -ForegroundColor Red
 }

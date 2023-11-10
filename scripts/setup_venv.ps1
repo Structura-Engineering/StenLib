@@ -7,10 +7,12 @@ try {
         Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Installing Virtual Environment..."
         python -m venv .venv
         Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Virtual Environment installation complete!"
-    } else {
+    }
+    else {
         Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "Virtual Environment is already set up."
     }
-} catch {
+}
+catch {
     Write-Host -NoNewline "$prefix " -ForegroundColor Red; Write-Host "An error occurred while setting up the Virtual Environment." -ForegroundColor Red;
 }
 
