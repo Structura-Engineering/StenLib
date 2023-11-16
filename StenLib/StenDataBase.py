@@ -1,7 +1,6 @@
 import json
+from pathlib import Path
 from typing import Any
-
-from StenUtils import Path, Utils
 
 
 class DataBase:
@@ -14,7 +13,7 @@ class DataBase:
             file_name (str): The name of the JSON file.
             data_folder (str, optional): The name of the data folder. Defaults to "data".
         """
-        file_path = Utils.data_path_generator(data_folder) / file_name
+        file_path = self.data_path_generator(data_folder) / file_name
         self.file_path = Path(file_path)
         if not self.file_path.is_file():
             self.data = {}
@@ -52,3 +51,18 @@ class DataBase:
         """Save the data to the file."""
         with self.file_path.open("w") as f:
             json.dump(self.data, f)
+
+    @staticmethod
+    def data_path_generator(data_folder: str = "data") -> Path:
+        """Create the data path.
+
+        Args:
+            data_folder (str, optional):
+                The name of the data folder. Defaults to "data".
+
+        Returns:
+            str: The path to the data directory.
+        """
+        data_path = Path(__file__).parent / data_folder
+        data_path.mkdir(parents=True, exist_ok=True)
+        return data_path

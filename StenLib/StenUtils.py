@@ -1,7 +1,6 @@
 import random
 import secrets
 import string
-from pathlib import Path
 
 
 class Utils:
@@ -27,26 +26,11 @@ class Utils:
 
         Example:
             >>> alphanumeric_id_generator()
-            'r9g3Yx'
+            "r9g3Yx"
             >>> alphanumeric_id_generator(10)
-            '1z7y6W1h5Z'
+            "1z7y6W1h5Z"
             >>> alphanumeric_id_generator(-10)
-            '2y6fRk5n8T'
+            "2y6fRk5n8T"
         """
         randomizer = secrets if use_secrets else random
         return "".join(randomizer.choice(cls.CHARS) for _ in range(abs(char_len)))
-
-    @staticmethod
-    def data_path_generator(data_folder: str = "data") -> Path:
-        """Create the data path.
-
-        Args:
-            data_folder (str, optional):
-                The name of the data folder. Defaults to "data".
-
-        Returns:
-            str: The path to the data directory.
-        """
-        data_path = Path(__file__).parent / data_folder
-        data_path.mkdir(parents=True, exist_ok=True)
-        return data_path
