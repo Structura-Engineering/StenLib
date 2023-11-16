@@ -1,7 +1,7 @@
-import os
 import random
 import secrets
 import string
+from pathlib import Path
 
 
 class Utils:
@@ -43,6 +43,6 @@ class Utils:
         Returns:
             str: The path to the data directory.
         """
-        data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
-        os.makedirs(data_path, exist_ok=True)
-        return data_path
+        data_path = Path(__file__).parent / "data"
+        data_path.mkdir(parents=True, exist_ok=True)
+        return str(data_path)

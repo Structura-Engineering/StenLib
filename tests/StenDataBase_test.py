@@ -1,5 +1,10 @@
-import pytest
-from StenLib.StenDataBase import *
+import unittest
 
-def test_sample():
-    assert True
+class TestStendatabase(unittest.TestCase):
+
+        def test_case1(self):
+            self.assertEqual(1, 1)
+    
+        def test_case2(self):
+            self.assertEqual(2, 2)
+    
