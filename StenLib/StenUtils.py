@@ -37,12 +37,16 @@ class Utils:
         return "".join(randomizer.choice(cls.CHARS) for _ in range(abs(char_len)))
 
     @staticmethod
-    def data_path_generator() -> str:
+    def data_path_generator(data_folder: str = "data") -> Path:
         """Create the data path.
+
+        Args:
+            data_folder (str, optional):
+                The name of the data folder. Defaults to "data".
 
         Returns:
             str: The path to the data directory.
         """
-        data_path = Path(__file__).parent / "data"
+        data_path = Path(__file__).parent / data_folder
         data_path.mkdir(parents=True, exist_ok=True)
-        return str(data_path)
+        return data_path

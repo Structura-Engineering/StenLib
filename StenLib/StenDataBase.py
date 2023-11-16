@@ -1,92 +1,54 @@
 import json
-import os
-from pathlib import Path
-from typing import Optional, Union
+from typing import Any
 
-from StenLib.StenUtils import Utils
+from StenUtils import Path, Utils
 
 
-class DataBase(Utils):
+class DataBase:
     """A class for managing JSON files."""
 
-    @classmethod
-    def load(
-        cls, file_name: Optional[Union[str, None]] = None
-    ) -> Union[list[Path], Path]:
-        """
-        Load data from a JSON file.
+    def __init__(self, file_name: str, data_folder: str = "data") -> None:
+        """Initialize the DataBase class.
 
         Args:
-            file_name (str, optional):
-                The name of the file (without extension). Defaults to None.
-
-        Returns:
-            Union[list[Path], Path]: If file_name is None,
-                returns a list of Path objects for all JSON files in the directory.
-            If file_name is provided, returns the Path to the specific file.
+            file_name (str): The name of the JSON file.
+            data_folder (str, optional): The name of the data folder. Defaults to "data".
         """
-        data_dir: Path = Path(cls.data_path_generator())
-        if file_name:
-            return data_dir / f"{file_name}.json"
-        return [
-            data_dir / filename
-            for filename in os.listdir(data_dir)
-            if filename.endswith(".json")
-        ]
-
-    @classmethod
-    def write(cls, data: dict, file_name: str) -> None:
-        """
-        Write data to a JSON file.
-
-        Args:
-            data (dict): The data to write.
-            file_name (str): The name of the file (without extension).
-        """
-        with open(str(cls.load(file_name)), "w") as json_file:
-            json.dump(data, json_file)
-
-    @classmethod
-    def read(cls, file_name: Optional[Union[str, None]] = None) -> dict:
-        """
-        Read data from a JSON file.
-
-        Args:
-            file_name (str, optional):
-                The name of the file (without extension). Defaults to None.
-                    if None loads all files.
-
-        Returns:
-            dict: The data from the file.
-        """
-        data: dict = {}
-        file_path = cls.load(file_name)
-        if isinstance(file_path, list):
-            for filename in file_path:
-                with open(filename, "r") as json_file:
-                    data.update(json.load(json_file))
+        file_path = Utils.data_path_generator(data_folder) / file_name
+        self.file_path = Path(file_path)
+        if not self.file_path.is_file():
+            self.data = {}
         else:
-            with open(file_path, "r") as json_file:
-                data = json.load(json_file)
-        return data
+            with self.file_path.open("r") as f:
+                self.data = json.load(f)
 
-    @classmethod
-    def create(cls, file_name: str) -> None:
-        """
-        Create a new JSON file.
+    def get(self, key: str) -> Any:
+        """Get the value for a key.
 
         Args:
-            file_name (str): The name of the file (without extension).
+            key (str): The key to get the value for.
         """
-        with open(str(cls.load(file_name)), "w") as json_file:
-            json.dump({}, json_file)
+        return self.data.get(key)
 
-    @classmethod
-    def delete(cls, file_name: str) -> None:
-        """
-        Delete a JSON file.
+    def set(self, key: str, value: Any) -> None:
+        """Set the value for a key.
 
         Args:
-            file_name (str): The name of the file (without extension).
+            key (str): The key to set the value for.
+            value (Any): The value to set.
         """
-        os.remove(str(cls.load(file_name)))
+        self.data[key] = value
+
+    def delete(self, key: str) -> None:
+        """Delete a key.
+
+        Args:
+            key (str): The key to delete.
+        """
+        if key in self.data:
+            del self.data[key]
+
+    def save(self) -> None:
+        """Save the data to the file."""
+        with self.file_path.open("w") as f:
+            json.dump(self.data, f)
