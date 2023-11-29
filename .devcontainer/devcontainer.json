@@ -8,9 +8,6 @@
     "ghcr.io/devcontainers-contrib/features/isort:2": {
       "version": "latest"
     },
-    "ghcr.io/devcontainers-contrib/features/pipenv:2": {
-      "version": "latest"
-    },
     "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
       "includeDeps": true,
       "package": "black",
