@@ -27,7 +27,7 @@
       "extensions": ["ms-python.python"]
     }
   },
-  "postCreateCommand": "pip3 install --user -r requirements.txt"
+  "postCreateCommand": "pip install --upgrade pip && pip install --user -r requirements.txt"
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
