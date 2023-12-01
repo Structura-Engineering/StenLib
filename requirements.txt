@@ -1,4 +1,3 @@
 setuptools
 types-setuptools
 mypy
-hypothesis

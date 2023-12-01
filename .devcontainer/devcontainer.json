@@ -34,7 +34,9 @@
         "sbsnippets.pytorch-snippets",
         "gruntfuggly.todo-tree",
         "eamodio.gitlens",
-        "github.copilot"
+        "github.copilot",
+        "github.vscode-github-actions",
+        "redhat.vscode-yaml"
       ],
       "settings": {
         "python.languageServer": "Pylance"
