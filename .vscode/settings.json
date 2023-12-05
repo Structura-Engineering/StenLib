@@ -15,6 +15,7 @@
   "material-icon-theme.files.color": "#ef5350",
   "material-icon-theme.folders.color": "#ef5350",
   "material-icon-theme.folders.associations": {
+    // TODO: fix icon path
     "StenLib": "extensions/icons/folder-sten",
   },
   "explorer.confirmDelete": false,
