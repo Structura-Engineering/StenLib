@@ -1,6 +1,6 @@
 {
   "name": "stenlib",
-  "dockerFile": "dockerfile"
+  "dockerFile": "../dockerfile"
   // "features": {
   //   "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
   //     "includeDeps": true,
