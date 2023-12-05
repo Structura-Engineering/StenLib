@@ -12,6 +12,11 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
   },
+  "material-icon-theme.files.color": "#ef5350",
+  "material-icon-theme.folders.color": "#ef5350",
+  "material-icon-theme.folders.associations": {
+    "StenLib": "../../../../icons/folder-sten"
+  },
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "github.copilot.enable": {
