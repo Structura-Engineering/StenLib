@@ -1,5 +1,5 @@
-from enum import Enum
 from typing import Type, Union
+from enum import Enum
 
 
 class EnumUtils(Enum):
