@@ -45,3 +45,4 @@ html_theme_options = {
     "titles_only": False,
 }
 html_static_path = ["_static"]
+# html_css_files = ["css/custom.css"] TODO: add custom css.(https://docs.readthedocs.io/en/stable/guides/adding-custom-css.html)
