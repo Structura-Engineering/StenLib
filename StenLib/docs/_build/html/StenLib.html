@@ -48,9 +48,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">StenLib</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">StenLib package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stenlib-stenenumutils-module">StenLib.StenEnumUtils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stenlib-stenutils-module">StenLib.StenUtils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-StenLib.StenEnumUtils">StenLib.StenEnumUtils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#StenLib.StenEnumUtils.EnumUtils"><code class="docutils literal notranslate"><span class="pre">EnumUtils</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-StenLib.StenUtils">StenLib.StenUtils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#StenLib.StenUtils.Utils"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-StenLib">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -87,14 +93,81 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="stenlib-stenenumutils-module">
-<h2>StenLib.StenEnumUtils module<a class="headerlink" href="#stenlib-stenenumutils-module" title="Link to this heading"></a></h2>
+<section id="module-StenLib.StenEnumUtils">
+<span id="stenlib-stenenumutils-module"></span><h2>StenLib.StenEnumUtils module<a class="headerlink" href="#module-StenLib.StenEnumUtils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="StenLib.StenEnumUtils.EnumUtils">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">StenLib.StenEnumUtils.</span></span><span class="sig-name descname"><span class="pre">EnumUtils</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/StenLib/StenEnumUtils.html#EnumUtils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#StenLib.StenEnumUtils.EnumUtils" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>A class that contains core methods for Enum.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="StenLib.StenEnumUtils.EnumUtils.get_all_values">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Enum</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/StenLib/StenEnumUtils.html#EnumUtils.get_all_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#StenLib.StenEnumUtils.EnumUtils.get_all_values" title="Link to this definition"></a></dt>
+<dd><p>Get all values of an Enum class as a list.</p>
+<dl>
+<dt>Returns:</dt><dd><p>list[Union[Enum, Type]]: A list of enum values.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ExampleEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">A</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">... </span>    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">... </span>    <span class="n">C</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ExampleEnum</span><span class="o">.</span><span class="n">get_all_values</span><span class="p">()</span>
+<span class="go">[&lt;ExampleEnum.A: 1&gt;, &lt;ExampleEnum.B: 2&gt;, &lt;ExampleEnum.C: 3&gt;]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="stenlib-stenutils-module">
-<h2>StenLib.StenUtils module<a class="headerlink" href="#stenlib-stenutils-module" title="Link to this heading"></a></h2>
+<section id="module-StenLib.StenUtils">
+<span id="stenlib-stenutils-module"></span><h2>StenLib.StenUtils module<a class="headerlink" href="#module-StenLib.StenUtils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="StenLib.StenUtils.Utils">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">StenLib.StenUtils.</span></span><span class="sig-name descname"><span class="pre">Utils</span></span><a class="reference internal" href="_modules/StenLib/StenUtils.html#Utils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#StenLib.StenUtils.Utils" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A collection of utility functions.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="StenLib.StenUtils.Utils.CHARS">
+<span class="sig-name descname"><span class="pre">CHARS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'</span></em><a class="headerlink" href="#StenLib.StenUtils.Utils.CHARS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="StenLib.StenUtils.Utils.alphanumeric_id_generator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alphanumeric_id_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_secrets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/StenLib/StenUtils.html#Utils.alphanumeric_id_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#StenLib.StenUtils.Utils.alphanumeric_id_generator" title="Link to this definition"></a></dt>
+<dd><p>Generate a random alphanumeric ID.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>char_len (int, optional):</dt><dd><p>Absolute length of the generated ID. Defaults to 6.</p>
+</dd>
+<dt>use_secrets (bool, optional):</dt><dd><dl class="simple">
+<dt>If True, use the secrets module for more secure random choices.</dt><dd><p>Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>str: A randomly generated ID consisting of alphanumeric characters.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alphanumeric_id_generator</span><span class="p">()</span>
+<span class="go">&quot;r9g3Yx&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alphanumeric_id_generator</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&quot;1z7y6W1h5Z&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alphanumeric_id_generator</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&quot;2y6fRk5n8T&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-StenLib">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-StenLib" title="Link to this heading"></a></h2>
 </section>
 </section>
 
