@@ -28,7 +28,8 @@
         "redhat.vscode-yaml",
         "ms-azuretools.vscode-docker",
         "jock.svg",
-        "ms-vscode.live-server"
+        "ms-vscode.live-server",
+        "github.vscode-github-actions"
       ]
     }
   }

@@ -26,7 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install build
           pip install twine
-          pip install mypy
+          pip install sphinx
+          pip install sphinx-rtd-theme
 
       - name: Create & Push tag
         id: create_tag
@@ -71,3 +72,13 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.TESTPYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TESTPYPI_PASSWORD }}
+
+      - name: Build Sphinx Documentation
+        run: make html
+        working-directory: StenLib/docs
+
+      - name: Upload HTML Documentation to Server
+        run: |
+          scp -r StenLib/docs/_build/html/* illyrius@structura-engineering.com:/home/illyrius/public_html/docs/
+        env:
+          DEPLOY_KEY: ${{ secrets.WEBSERVER_SSH_KEY }}
