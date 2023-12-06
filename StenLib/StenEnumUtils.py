@@ -10,10 +10,10 @@ class EnumUtils(Enum):
         Get all values of an Enum class as a list.
 
         Returns:
-            list[Union[Enum, Type]]: A list of enum values.
+            list[Enum | type]: A list of all values of the Enum class.
 
         Example:
-            >>> class ExampleEnum(Enum):
+            >>> class ExampleEnum(EnumUtils):
             ...     A = 1
             ...     B = 2
             ...     C = 3

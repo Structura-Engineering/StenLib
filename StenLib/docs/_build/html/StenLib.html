@@ -105,9 +105,9 @@
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Enum</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/StenLib/StenEnumUtils.html#EnumUtils.get_all_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#StenLib.StenEnumUtils.EnumUtils.get_all_values" title="Link to this definition"></a></dt>
 <dd><p>Get all values of an Enum class as a list.</p>
 <dl>
-<dt>Returns:</dt><dd><p>list[Union[Enum, Type]]: A list of enum values.</p>
+<dt>Returns:</dt><dd><p>list[Enum | type]: A list of all values of the Enum class.</p>
 </dd>
-<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ExampleEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ExampleEnum</span><span class="p">(</span><span class="n">EnumUtils</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">A</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="gp">... </span>    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="gp">... </span>    <span class="n">C</span> <span class="o">=</span> <span class="mi">3</span>

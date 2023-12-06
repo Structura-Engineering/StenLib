@@ -87,10 +87,10 @@
 <span class="sd">        Get all values of an Enum class as a list.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            list[Union[Enum, Type]]: A list of enum values.</span>
+<span class="sd">            list[Enum | type]: A list of all values of the Enum class.</span>
 
 <span class="sd">        Example:</span>
-<span class="sd">            &gt;&gt;&gt; class ExampleEnum(Enum):</span>
+<span class="sd">            &gt;&gt;&gt; class ExampleEnum(EnumUtils):</span>
 <span class="sd">            ...     A = 1</span>
 <span class="sd">            ...     B = 2</span>
 <span class="sd">            ...     C = 3</span>
