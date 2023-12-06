@@ -1,2 +1,4 @@
 setuptools
 types-setuptools
+sphinx
+sphinx-rtd-theme
