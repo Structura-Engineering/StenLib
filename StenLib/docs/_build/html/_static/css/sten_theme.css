@@ -1,0 +1,20 @@
+@import 'theme.css';
+
+li.wy-breadcrumbs-aside {
+    display: none;
+}
+
+.wy-nav-content {
+    min-width: 100%;
+}
+
+.wy-side-nav-search .wy-dropdown>a,
+.wy-side-nav-search>a {
+    font-size: 175%;
+    margin-bottom: 5%;
+}
+
+.wy-menu-vertical header,
+.wy-menu-vertical p.caption {
+    color: #FFB000;
+}
