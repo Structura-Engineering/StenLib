@@ -1,4 +1,3 @@
-from typing import Type, Union
 from enum import Enum
 
 
@@ -6,7 +5,7 @@ class EnumUtils(Enum):
     """A class that contains core methods for Enum."""
 
     @classmethod
-    def get_all_values(cls) -> list[Union[Enum, Type]]:
+    def get_all_values(cls) -> list[Enum | type]:
         """
         Get all values of an Enum class as a list.
 
