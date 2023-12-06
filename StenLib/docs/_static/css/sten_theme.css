@@ -1,5 +1,9 @@
 @import 'theme.css';
 
+div.document[role="main"] {
+    max-width: 800px;
+}
+
 li.wy-breadcrumbs-aside {
     display: none;
 }
