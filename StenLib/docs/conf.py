@@ -45,4 +45,11 @@ html_theme_options = {
     "titles_only": False,
 }
 html_static_path = ["_static"]
-# html_css_files = ["css/custom.css"] TODO: add custom css.(https://docs.readthedocs.io/en/stable/guides/adding-custom-css.html)
+# html_css_files = ["css/custom.css"] # TODO: add custom css.(https://docs.readthedocs.io/en/stable/guides/adding-custom-css.html)
+# TODO: Fix bug in `make html` giving:
+# WARNING: autodoc: failed to import module 'StenEnumUtils' from module 'StenLib'; the following exception was raised:
+# No module named 'StenLib'
+# WARNING: autodoc: failed to import module 'StenUtils' from module 'StenLib'; the following exception was raised:
+# No module named 'StenLib'
+# WARNING: autodoc: failed to import module 'StenLib'; the following exception was raised:
+# No module named 'StenLib'
