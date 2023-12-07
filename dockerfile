@@ -1,5 +1,7 @@
 FROM python:3.12-bullseye
 
+WORKDIR /app
+
 RUN pip3 install --upgrade pip
 
 COPY requirements.txt /tmp/pip-tmp/
