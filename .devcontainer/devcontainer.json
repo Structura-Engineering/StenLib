@@ -1,20 +1,15 @@
 {
-  "name": "stenlib",
   "build": {
     "dockerfile": "../dockerfile",
-    "context": "."
+    "args": {
+      "IMAGE": "python",
+      "VARIANT": "3.12-bullseye"
+    }
   },
-  "workspaceFolder": "/workspace",
-  "remoteUser": "vscode",
-  "runArgs": [
-    "-v",
-    "/var/run/docker.sock:/var/run/docker.sock",
-    "--hostname=structura-engineering"
-  ],
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": "true",
-      "username": "vscode",
+      "username": "vscode@STEN",
       "userUid": "1000",
       "userGid": "1000",
       "upgradePackages": "true"
@@ -25,6 +20,9 @@
     }
   },
   "customizations": {
+    "settings": {
+      "python.defaultInterpreterPath": "/usr/local/bin/python"
+    },
     "vscode": {
       "extensions": [
         "ms-python.python",
@@ -43,5 +41,7 @@
         "ms-vscode.live-server"
       ]
     }
-  }
+  },
+  "postCreateCommand": "pip3 install --user -r requirements.txt",
+  "remoteUser": "vscode@STEN"
 }
