@@ -1,6 +1,11 @@
 {
   "name": "stenlib",
   "dockerFile": "../dockerfile",
+  "workspaceFolder": "/workspace",
+  "runArgs": [
+    "-v",
+    "/var/run/docker.sock:/var/run/docker.sock"
+  ],
   "features": {
     "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
       "includeDeps": true,
