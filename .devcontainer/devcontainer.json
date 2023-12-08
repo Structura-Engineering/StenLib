@@ -24,7 +24,6 @@
         "formulahendry.code-runner",
         "usernamehw.errorlens",
         "visualstudioexptteam.vscodeintellicode",
-        "visualstudioexptteam.intellicode-api-usage-examples",
         "pkief.material-icon-theme",
         "gruntfuggly.todo-tree",
         "github.copilot",
@@ -32,8 +31,7 @@
         "redhat.vscode-yaml",
         "ms-azuretools.vscode-docker",
         "jock.svg",
-        "ms-vscode.live-server",
-        "github.vscode-github-actions"
+        "ms-vscode.live-server"
       ]
     }
   }
