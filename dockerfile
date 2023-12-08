@@ -1,4 +1,0 @@
-ARG IMAGE=python
-ARG VARIANT=3.12-bullseye
-
-FROM ${IMAGE}:${VARIANT}

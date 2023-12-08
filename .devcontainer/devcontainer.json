@@ -1,11 +1,5 @@
 {
-  "build": {
-    "dockerfile": "../dockerfile",
-    "args": {
-      "IMAGE": "python",
-      "VARIANT": "3.12-bullseye"
-    }
-  },
+  "image": "python:3.12-bullseye",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": "true",
@@ -42,6 +36,6 @@
       ]
     }
   },
-  "postCreateCommand": "pip3 install --user -r requirements.txt",
+  "postCreateCommand": "pip3 install --user -r requirements.txt && pip3 install --upgrade pip",
   "remoteUser": "vscode@STEN"
 }
