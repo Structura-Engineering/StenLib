@@ -5,7 +5,8 @@
   "runArgs": [
     "-v",
     "/var/run/docker.sock:/var/run/docker.sock",
-    "--hostname=structura-engineering"
+    "--hostname=structura-engineering",
+    "--user=python"
   ],
   "features": {
     "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
