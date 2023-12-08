@@ -1,7 +1,9 @@
 {
   "name": "stenlib",
-  "dockerFile": "../dockerfile",
-  "workspaceFolder": "/workspace",
+  "image": "python:3.12-bullseye",
+  "workspaceFolder": "/app",
+  "remoteUser": "appusr",
+  "postCreateCommand": "pip install --upgrade pip && pip install --disable-pip-version-check --no-cache-dir -r requirements.txt",
   "runArgs": [
     "-v",
     "/var/run/docker.sock:/var/run/docker.sock"
@@ -37,6 +39,5 @@
         "ms-vscode.live-server"
       ]
     }
-  },
-  "postCreateCommand": "echo 'PS1=\"appusr@structura-engineering:\\w$ \"' >> ~/.bashrc && source ~/.bashrc"
+  }
 }
