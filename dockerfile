@@ -1,9 +1,8 @@
-FROM python:3.12-bullseye
+FROM python:3.12-slim-bullseye
 
 WORKDIR /app
 
-RUN pip3 install --upgrade pip
+COPY . /app
 
-COPY requirements.txt /tmp/pip-tmp/
-RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-    && rm -rf /tmp/pip-tmp
+RUN pip3 install --upgrade pip && \
+    pip3 install --disable-pip-version-check --no-cache-dir -r requirements.txt
