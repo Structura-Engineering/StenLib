@@ -1,6 +1,6 @@
 {
   "name": "stenlib",
-  "dockerFile": "dockerfile",
+  "dockerFile": "../dockerfile",
   "workspaceFolder": "/workspace",
   "runArgs": [
     "-v",
