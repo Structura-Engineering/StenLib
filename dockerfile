@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bullseye
+FROM golang:1.16-alpine
 
 WORKDIR /app
 
