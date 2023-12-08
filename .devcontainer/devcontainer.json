@@ -1,26 +1,31 @@
 {
   "name": "stenlib",
-  "dockerFile": "../dockerfile",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": "."
+  },
   "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
   "runArgs": [
     "-v",
     "/var/run/docker.sock:/var/run/docker.sock",
-    "--hostname=structura-engineering",
+    "--hostname=structura-engineering"
   ],
   "features": {
-    "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
-      "includeDeps": true,
-      "package": "black",
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
       "version": "latest",
-      "injections": "pylint",
-      "interpreter": "python3"
+      "ppa": "false"
     }
   },
   "customizations": {
     "vscode": {
-      "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-      },
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
