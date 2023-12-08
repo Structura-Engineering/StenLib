@@ -18,8 +18,6 @@ COPY --from=build /app /app
 
 RUN useradd -m appusr
 
-RUN echo 'PS1="appusr@structura-engineering:\w$ "' >> ~/.bashrc
-
 USER appusr
 
 CMD ["/bin/bash", "-c", "source venv/bin/activate && exec /bin/bash"]
