@@ -77,8 +77,15 @@ jobs:
         run: make html
         working-directory: StenLib/docs
 
-      - name: Upload HTML Documentation to Server
+      - name: Install SSH key
         run: |
-          scp -r StenLib/docs/_build/html/* illyrius@structura-engineering.com:/home/illyrius/public_html/docs/
-        env:
-          DEPLOY_KEY: ${{ secrets.WEBSERVER_SSH_KEY }}
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Connect & Deploy to Server
+        run: |
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./StenLib/docs/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/
+        
+      - name: Cleanup
+        run: rm -rf ~/.ssh
