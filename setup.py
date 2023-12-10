@@ -1,8 +1,10 @@
 from setuptools import find_packages, setup
 
+# TODO: can we replace setuptools with something built in?
+
 setup(
     name="StenLib",
-    version="0.2.1",
+    version="0.2.2",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     license=open("LICENSE.md").read(),
