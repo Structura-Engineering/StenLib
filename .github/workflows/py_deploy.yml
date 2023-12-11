@@ -87,5 +87,4 @@ jobs:
         run: ssh-keyscan -4 -v -p ${{ secrets.SSH_HOST_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -avz -e 'ssh -p ${{ secrets.SSH_HOST_PORT }} -oHostKeyAlgorithms=+ssh-rsa,ssh-dss' ./StenLib/docs ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
-      
+        run: sshpass -p ${{ secrets.SSH_KEY_PASS }} rsync -avz -e 'ssh -p ${{ secrets.SSH_HOST_PORT }} -oHostKeyAlgorithms=+ssh-rsa,ssh-dss' ./StenLib/docs ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
