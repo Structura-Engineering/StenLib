@@ -87,4 +87,5 @@ jobs:
         run: ssh-keyscan -4 -v -p ${{ secrets.SSH_HOST_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Copy docs to webserver
-        run: scp -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST}}:${{ secrets.SSH_HOST_PATH }}
+        run: scp -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
+      

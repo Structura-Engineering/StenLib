@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="StenLib",
-    version="0.3.0",
+    version="0.3.1",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     license=open("LICENSE.md").read(),
