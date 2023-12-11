@@ -86,5 +86,5 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -4 -v -p ${{ secrets.SSH_HOST_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy with rsync
-        run: sshpass -p "${{ secrets.SSH_KEY_PASS }}" rsync -avz -e 'ssh -p ${{ secrets.SSH_HOST_PORT }} -oHostKeyAlgorithms=+ssh-rsa,ssh-dss' ./StenLib/docs ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
+      - name: Copy docs to webserver
+        run: scp -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST}}:${{ secrets.SSH_HOST_PATH }}
