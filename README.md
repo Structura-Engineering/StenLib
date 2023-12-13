@@ -10,11 +10,11 @@
 </p>
 <p align="center">
   <a>
-    <img src="https://img.shields.io/badge/Unittest-passing-brightgreen" alt="Unittest">
-    <img src="https://img.shields.io/badge/Build-passing-brightgreen" alt="Build">
-    <img src="https://img.shields.io/badge/Release-passing-brightgreen" alt="Release">
-    <img src="https://img.shields.io/badge/PyPI-passing-brightgreen" alt="PyPI">
-    <img src="https://img.shields.io/badge/Docs-passing-brightgreen" alt="Docs">
+    <img src="https://img.shields.io/badge/Unittest-${{ job.status }}-brightgreen" alt="Unittest">
+    <img src="https://img.shields.io/badge/Build-${{ job.status }}-brightgreen" alt="Build">
+    <img src="https://img.shields.io/badge/Release-${{ job.status }}-brightgreen" alt="Release">
+    <img src="https://img.shields.io/badge/PyPI-${{ job.status }}-brightgreen" alt="PyPI">
+    <img src="https://img.shields.io/badge/Docs-${{ job.status }}-brightgreen" alt="Docs">
   </a>
 </p>
 
