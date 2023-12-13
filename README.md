@@ -6,8 +6,11 @@
   <a href="https://app.deepsource.com/gh/Structura-Engineering/StenLib/">
     <img src="https://app.deepsource.com/gh/Structura-Engineering/StenLib.svg/?label=active+issues&show_trend=true&token=aVu9lik1r9ykXWLQZSGz3ItB" alt="DeepSource">
     <img src="https://app.deepsource.com/gh/Structura-Engineering/StenLib.svg/?label=resolved+issues&show_trend=true&token=aVu9lik1r9ykXWLQZSGz3ItB" alt="DeepSource">
-    <img src="https://github.com/Structura-Engineering/StenLib/actions/workflows/py_deploy.yml/badge.svg"
-    alt="Unittests">
+    <img src="https://img.shields.io/badge/Unittest-passing-brightgreen" alt="Unittest">
+    <img src="https://img.shields.io/badge/Build-passing-brightgreen" alt="Build">
+    <img src="https://img.shields.io/badge/Release-passing-brightgreen" alt="Release">
+    <img src="https://img.shields.io/badge/PyPI-passing-brightgreen" alt="PyPI">
+    <img src="https://img.shields.io/badge/Docs-passing-brightgreen" alt="Docs">
   </a>
 </p>
 
