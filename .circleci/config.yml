@@ -1,0 +1,55 @@
+version: 2.1
+orbs:
+  python: circleci/python@1.2
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - unittest
+      - deploy:
+          requires:
+            - build
+            - unittest
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.12
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python -m pip install --upgrade pip
+            pip install build
+            pip install twine
+            pip install sphinx
+            pip install sphinx-rtd-theme
+      - run:
+          name: Build package
+          command: python -m build
+  unittest:
+    docker:
+      - image: circleci/python:3.12
+    steps:
+      - checkout
+      - run:
+          name: Run unittests
+          command: python -m unittest discover -s StenLib/tests
+  deploy:
+    docker:
+      - image: circleci/python:3.12
+    steps:
+      - checkout
+      - run:
+          name: Publish package to PyPI
+          command: twine upload dist/*
+          environment:
+            TWINE_USERNAME: $PYPI_USERNAME
+            TWINE_PASSWORD: $PYPI_PASSWORD
+      - run:
+          name: Publish package to TestPyPI
+          command: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+          environment:
+            TWINE_USERNAME: $TESTPYPI_USERNAME
+            TWINE_PASSWORD: $TESTPYPI_PASSWORD
