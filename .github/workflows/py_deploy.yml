@@ -45,6 +45,10 @@ jobs:
           echo "TAG=${TAG}" >> $GITHUB_OUTPUT
         shell: bash
 
+      - name: Run unittests
+        run: python -m unittest discover -s StenLib/tests
+        working-directory: StenLib
+
       - name: Build package
         run: python -m build
 
