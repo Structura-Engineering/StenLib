@@ -34,6 +34,6 @@
       ]
     }
   },
-  "postCreateCommand": "pip3 install --upgrade pip && pip3 install --user -r requirements.txt",
+  "postCreateCommand": "bash .devcontainer/install.sh",
   "remoteUser": "vscode@STEN"
 }
