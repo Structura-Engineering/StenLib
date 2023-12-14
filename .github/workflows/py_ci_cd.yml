@@ -79,9 +79,8 @@ jobs:
         uses: softprops/action-gh-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ steps.create_tag.outputs.TAG }}
         with:
-          tag_name: ${{ env.TAG }}
+          tag_name: ${{ steps.create_tag.outputs.TAG }}
           draft: false
           prerelease: false
 
