@@ -16,8 +16,7 @@ jobs:
 
       - id: get_python_version
         run: |
-          PYTHON_VERSION=$(grep -E '^python_requires' setup.py | cut -d '=' -f 2 | tr -d \"',\")
-          echo "::set-output name=python_version::$PYTHON_VERSION"
+          echo "python_version=$(grep -E '^python_requires' setup.py | cut -d '=' -f 2 | tr -d \"',\ ")" >> $GITHUB_ENV
         shell: bash
 
       - id: setup_python
