@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: create_badge
-        name: Create Awesome Badge
+        name: Create Badges
         uses: schneegans/dynamic-badges-action@v1.7.0
         with : 
           auth: ${{ secrets.GIST_SECRET }}
@@ -117,3 +117,5 @@ jobs:
           label: Hello
           message: World
           color: orange
+          logoSvg: python
+          style: flat-square
