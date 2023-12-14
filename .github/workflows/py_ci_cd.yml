@@ -72,7 +72,7 @@ jobs:
 
       - id: create_tag
         name: Create & Push Tag
-        run: TAG=$(python setup.py --version) >> $GITHUB_OUTPUT
+        run: echo TAG=$(python setup.py --version) >> $GITHUB_OUTPUT
         shell: bash
 
       - id: create_release
