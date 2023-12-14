@@ -10,10 +10,10 @@
 </p>
 <p align="center">
   <a href="">
-    <img alt="Build" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/build-badge.json">
-    <img alt="Unittest" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/unittest-badge.json">
-    <img alt="PyPI" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/pypi-badge.json">       
-    <img alt="Docs" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/docs-badge.json">     
+    <img alt="Build" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/release_badge.json">
+    <img alt="Unittest" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/unittest_badge.json">
+    <img alt="PyPI" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/pypi_badge.json">       
+    <img alt="Docs" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/docs_badge.json">     
   </a>
 </p>
 
