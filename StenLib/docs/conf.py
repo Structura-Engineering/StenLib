@@ -14,7 +14,6 @@ sys.path.insert(0, os.path.abspath("../.."))
 project = "StenLib"
 copyright = "2023, Structura-Engineering"
 author = "Structura-Engineering"
-release = "0.1.7"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

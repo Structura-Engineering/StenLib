@@ -24,19 +24,17 @@ jobs:
         name: Install Dependencies
         run: |
           pip install --upgrade pip
+          pip install -r requirements.txt
           pip install build
           pip install twine
-          pip install sphinx
-          pip install sphinx-rtd-theme
 
       - id: build_package
         name: Build Package
         run: python -m build
 
       - id: build_badge
-        name: Build Badge
         if: always()
-        uses: schneegans/dynamic-badges-action@v1.7.0
+        uses: schneegans/dynamic-badges-action@master
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
@@ -57,9 +55,8 @@ jobs:
         run: python -m unittest discover -s StenLib/tests
 
       - id: unittest_badge
-        name: Unittest Badge
         if: always()
-        uses: schneegans/dynamic-badges-action@v1.7.0
+        uses: schneegans/dynamic-badges-action@master
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
@@ -92,7 +89,6 @@ jobs:
         shell: bash
 
       - id: create_release
-        name: Create GitHub Release
         uses: softprops/action-gh-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -124,9 +120,8 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.TESTPYPI_PASSWORD }}
 
       - id: pypi_badge
-        name: PyPI Badge
         if: always()
-        uses: schneegans/dynamic-badges-action@v1.7.0
+        uses: schneegans/dynamic-badges-action@master
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
@@ -142,13 +137,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: build_docs
-        name: Build Sphinx Documentation
-        run: make html
-        working-directory: StenLib/docs
+      - id: build_sphinx_docs
+        uses: ammaraskar/sphinx-action@master
+        with:
+          docs-folder: "StenLib/docs/"
 
       - id: install_ssh_key
-        name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -163,9 +157,8 @@ jobs:
         run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
 
       - id: docs_badge
-        name: Docs Badge
         if: always()
-        uses: schneegans/dynamic-badges-action@v1.7.0
+        uses: schneegans/dynamic-badges-action@master
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
