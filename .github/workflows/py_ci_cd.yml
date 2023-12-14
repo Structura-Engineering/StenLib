@@ -19,8 +19,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: stens_setup_py_ci_cd
-        uses: ./.github/workflows/setup_py_ci_cd.yml
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
 
       - id: run_unittests
         name: Run Unittests
@@ -45,8 +51,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: stens_setup_py_ci_cd
-        uses: ./.github/workflows/setup_py_ci_cd.yml
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
 
       - id: install_dependencies
         name: Install Dependencies
@@ -92,8 +104,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: stens_setup_py_ci_cd
-        uses: ./.github/workflows/setup_py_ci_cd.yml
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
 
       - id: install_dependencies
         name: Install Dependencies
@@ -141,8 +159,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: stens_setup_py_ci_cd
-        uses: ./.github/workflows/setup_py_ci_cd.yml
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
 
       - id: install_dependencies
         name: Install Dependencies
