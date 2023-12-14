@@ -11,7 +11,9 @@ jobs:
     steps:
       - id: keyword_check
         name: Check for keyword in commit message
-        run: echo "contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -qP '.(deploy|test)\b' && echo true || echo false)" >> $GITHUB_ENV
+        run: |
+          contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -qP '.(deploy|test)\b' && echo true || echo false)
+          echo "::set-output name=contains_keyword::$contains_keyword"
     outputs:
       contains_keyword: ${{ steps.keyword_check.outputs.contains_keyword }}
 
