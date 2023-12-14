@@ -47,7 +47,7 @@ jobs:
           label: Build
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          logoSvg: windowsterminal
+          namedLogo: windowsterminal
           style: flat-square
 
   test:
@@ -70,7 +70,7 @@ jobs:
           label: Unittest
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          logoSvg: pytest
+          namedLogo: pytest
           style: flat-square
 
   release:
@@ -137,7 +137,7 @@ jobs:
           label: PyPI
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          logoSvg: pypi
+          namedLogo: pypi
           style: flat-square
 
   docs:
@@ -176,5 +176,5 @@ jobs:
           label: Docs
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          logoSvg: googledocs
+          namedLogo: googledocs
           style: flat-square
