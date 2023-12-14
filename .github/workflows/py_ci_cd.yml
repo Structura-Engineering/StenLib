@@ -81,7 +81,7 @@ jobs:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
           filename: release_badge.json
-          label: Build
+          label: Release
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: hackthebox
