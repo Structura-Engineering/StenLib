@@ -72,14 +72,14 @@ jobs:
 
       - id: create_tag
         name: Create & Push Tag
-        run: TAG=$(python setup.py --version) >> $GITHUB_ENV
+        run: TAG=$(python setup.py --version) >> $GITHUB_OUTPUT
         shell: bash
 
       - id: create_release
         uses: softprops/action-gh-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ env.TAG }}
+          TAG: ${{ steps.create_tag.outputs.TAG }}
         with:
           tag_name: ${{ env.TAG }}
           draft: false
@@ -189,9 +189,9 @@ jobs:
         name: Adding Known Hosts
         run: ssh-keyscan -4 -v -p ${{ secrets.SSH_HOST_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - id: copy_docs
-        name: Copy Docs to Webserver
-        run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
+      # - id: copy_docs
+      #   name: Copy Docs to Webserver
+      #   run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
 
       - id: docs_badge
         if: always()
