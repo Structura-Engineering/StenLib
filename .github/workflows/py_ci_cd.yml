@@ -104,18 +104,53 @@ jobs:
         run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
 
   create_badge:
-    # needs: deploy
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - id: create_badge
-        name: Create Badges
+      - id: create_badge_run_unittests
+        name: Unit Tests Badge
         uses: schneegans/dynamic-badges-action@v1.7.0
-        with : 
+        with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: 27fc61b978a42aea3bb569da8416b3e6
-          filename: test.json
-          label: Hello
-          message: World
-          color: orange
-          logoSvg: python
+          gistID: ${{ secrets.GIST_ID }}
+          filename: unittests-badge.json
+          label: Unit Tests
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          style: flat-square
+
+      - id: create_badge_build_package
+        name: Build Package Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: build-package-badge.json
+          label: Build Package
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          style: flat-square
+
+      - id: create_badge_publish_to_pypi
+        name: PyPI Publish Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: pypi-publish-badge.json
+          label: PyPI Publish
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          style: flat-square
+
+      - id: create_badge_copy_docs
+        name: Copy Docs Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: copy-docs-badge.json
+          label: Copy Docs
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           style: flat-square
