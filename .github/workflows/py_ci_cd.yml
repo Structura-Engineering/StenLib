@@ -14,15 +14,9 @@ jobs:
       - id: checkout
         uses: actions/checkout@main
 
-      - id: get_python_version
-        run: echo python_version=$(grep -Po "(?<=python_requires=\").*(?=\",)" setup.py) >> $GITHUB_ENV
-        shell: bash
-
       - id: setup_python
         name: Set up Python
         uses: actions/setup-python@main
-        with:
-          python-version: ${{ steps.get_python_version.outputs.python_version }}
 
       - id: install_dependencies
         name: Install dependencies
