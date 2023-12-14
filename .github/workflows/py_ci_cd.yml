@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  setup:
+  setup_and_build:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,11 +32,6 @@ jobs:
           pip install sphinx
           pip install sphinx-rtd-theme
 
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-
-    steps:
       - id: build_package
         name: Build package
         run: python -m build
@@ -54,7 +49,7 @@ jobs:
           style: flat-square
 
   test:
-    needs: build
+    needs: setup_and_build
     runs-on: ubuntu-latest
 
     steps:

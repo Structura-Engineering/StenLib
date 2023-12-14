@@ -1,7 +1,5 @@
 from setuptools import find_packages, setup
 
-# TODO: can we replace setuptools with something built in?
-
 setup(
     name="StenLib",
     version="0.3.8",
@@ -14,9 +12,7 @@ setup(
     },
     install_requires=open("requirements.txt").read().splitlines(),
     packages=find_packages(),
-    python_requires=">=3.12.0",
-    package_data={
-        "*": ["*.py", "data/*.json", "*.pyi"],
-    },
+    python_requires="3.12.0",
+    package_data={"*": ["*.py"]},
     zip_safe=False,
 )

@@ -6,8 +6,19 @@
   },
   "code-runner.runInTerminal": true,
   // Editor Settings
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  // JSON-specific Editor Settings
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Markdown-specific Editor Settings
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // JSONC-specific Editor Settings
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   // Python-specific Editor Settings
   "[python]": {
     "editor.codeActionsOnSave": {
@@ -25,10 +36,7 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "github.copilot.enable": {
-    "*": true,
-    "markdown": true,
-    "plaintext": true,
-    "scminput": false
+    "*": true
   },
   // JSON Schema Settings
   "json.schemas": [
