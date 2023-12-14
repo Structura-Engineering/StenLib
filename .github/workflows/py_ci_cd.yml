@@ -8,12 +8,12 @@ on:
 jobs:
   keyword_check:
     runs-on: ubuntu-latest
-    outputs:
-      contains_keyword: ${{ steps.keyword_check.outputs.contains_keyword }}
     steps:
       - id: keyword_check
         name: Check for keyword in commit message
         run: echo "contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -qP '.(deploy|test)\b' && echo true || echo false)" >> $GITHUB_ENV
+    outputs:
+      contains_keyword: ${{ steps.keyword_check.outputs.contains_keyword }}
 
   setup_and_build:
     needs: keyword_check
@@ -24,11 +24,17 @@ jobs:
       - id: checkout
         uses: actions/checkout@main
 
+      - id: get_python_version
+        run: |
+          PYTHON_VERSION=$(grep -E '^python_requires' setup.py | cut -d '=' -f 2 | tr -d \"',\")
+          echo "::set-output name=python_version::$PYTHON_VERSION"
+        shell: bash
+
       - id: setup_python
         name: Set up Python
         uses: actions/setup-python@main
         with:
-          python-version: "3.12.0"
+          python-version: ${{ steps.get_python_version.outputs.python_version }}
 
       - id: install_dependencies
         name: Install dependencies
