@@ -6,21 +6,9 @@ on:
       - main
 
 jobs:
-  keyword_check:
-    runs-on: ubuntu-latest
-    steps:
-      - id: keyword_check
-        name: Check for keyword in commit message
-        run: |
-          contains_keyword=$(echo '${{ github.event.head_commit.message }}' | grep -qP '.(deploy|test)\b' && echo true || echo false)
-          echo "::set-output name=contains_keyword::$contains_keyword"
-    outputs:
-      contains_keyword: ${{ steps.keyword_check.outputs.contains_keyword }}
-
   setup_and_build:
-    needs: keyword_check
     runs-on: ubuntu-latest
-    if: ${{ needs.keyword_check.outputs.contains_keyword == 'true' }}
+    if: contains(github.event.head_commit.message, '.(deploy|test)\b')
 
     steps:
       - id: checkout
