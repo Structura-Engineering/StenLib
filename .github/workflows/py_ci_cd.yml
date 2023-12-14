@@ -47,6 +47,7 @@ jobs:
           label: Build
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          logoSvg: windowsterminal
           style: flat-square
 
   test:
@@ -69,10 +70,11 @@ jobs:
           label: Unittest
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          logoSvg: pytest
           style: flat-square
 
   release:
-    needs: test
+    needs: setup_and_build
     runs-on: ubuntu-latest
 
     steps:
@@ -104,7 +106,7 @@ jobs:
           prerelease: false
 
   publish:
-    needs: release
+    needs: setup_and_build
     runs-on: ubuntu-latest
 
     steps:
@@ -135,10 +137,11 @@ jobs:
           label: PyPI
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          logoSvg: pypi
           style: flat-square
 
   docs:
-    needs: publish
+    needs: setup_and_build
     runs-on: ubuntu-latest
 
     steps:
@@ -173,4 +176,5 @@ jobs:
           label: Docs
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          logoSvg: googledocs
           style: flat-square
