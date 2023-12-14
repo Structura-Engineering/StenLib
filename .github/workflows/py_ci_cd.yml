@@ -1,4 +1,5 @@
 name: Python CI/CD
+run-name: "Python CI/CD by @$ { { github.actor }}"
 
 on:
   push:
@@ -6,9 +7,13 @@ on:
       - main
 
 jobs:
-  setup_and_build:
+  keyword_check:
     runs-on: ubuntu-latest
     if: contains(github.event.head_commit.message, '.deploy')
+
+  test:
+    needs: keyword_check
+    runs-on: ubuntu-latest
 
     steps:
       - id: checkout
@@ -20,22 +25,6 @@ jobs:
           python-version: "3.12"
           cache: "pip"
 
-      - id: install_dependencies
-        name: Install Dependencies
-        run: |
-          pip install --upgrade pip
-          pip install build
-          pip install twine
-
-      - id: build_package
-        name: Build Package
-        run: python -m build
-
-  test:
-    needs: setup_and_build
-    runs-on: ubuntu-latest
-
-    steps:
       - id: run_unittests
         name: Run Unittests
         run: python -m unittest discover -s StenLib/tests
@@ -55,10 +44,27 @@ jobs:
           style: flat-square
 
   release:
-    needs: setup_and_build
+    needs: keyword_check
     runs-on: ubuntu-latest
 
     steps:
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - id: install_dependencies
+        name: Install Dependencies
+        run: pip install build
+
+      - id: build_package
+        name: Build Package
+        run: python -m build
+
       - id: create_tag
         name: Create & Push Tag
         run: TAG=$(python setup.py --version) >> $GITHUB_ENV
@@ -89,10 +95,30 @@ jobs:
           style: flat-square
 
   publish:
-    needs: setup_and_build
+    needs: keyword_check
     runs-on: ubuntu-latest
 
     steps:
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - id: install_dependencies
+        name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install build
+          pip install twine
+
+      - id: build_package
+        name: Build Package
+        run: python -m build
+
       - id: publish_to_pypi
         name: Publish Package to PyPI
         if: contains(github.event.head_commit.message, '.deploy')
@@ -124,10 +150,25 @@ jobs:
           style: flat-square
 
   docs:
-    needs: setup_and_build
+    needs: keyword_check
     runs-on: ubuntu-latest
 
     steps:
+      - id: checkout
+        uses: actions/checkout@main
+
+      - id: setup_python
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - id: install_dependencies
+        name: Install Dependencies
+        run: |
+          pip install sphinx
+          pip install sphinx_rtd_theme
+
       - id: build_docs
         name: Build Sphinx Documentation
         run: make html
