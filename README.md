@@ -26,5 +26,6 @@
 
 ## Build package, Release on Github & Upload to (Test)PyPi:
 
-1. FOR `PyPi`: In the push message use the keyword `.deploy .tag[x]`.
-2. FOR `TestPyPi`: In the push message use the keyword `.deploy .test .tag[x]`.
+1. FOR `PyPi`: In the push message use the keyword `.deploy`.
+2. FOR `TestPyPi`: In the push message use the keyword `.deploy .test`.
+3. \*\*\*DONT FORGET TO CHANGE THE VERSION IN `setup.py`\*\*\*.

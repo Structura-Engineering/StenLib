@@ -24,26 +24,12 @@ jobs:
         name: Install Dependencies
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
           pip install build
           pip install twine
 
       - id: build_package
         name: Build Package
         run: python -m build
-
-      - id: build_badge
-        if: always()
-        uses: schneegans/dynamic-badges-action@master
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: ${{ secrets.GIST_ID }}
-          filename: build-badge.json
-          label: Build
-          message: ${{ job.status }}
-          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          namedLogo: windowsterminal
-          style: flat-square
 
   test:
     needs: setup_and_build
@@ -60,11 +46,12 @@ jobs:
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
-          filename: unittest-badge.json
+          filename: unittest_badge.json
           label: Unittest
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: pytest
+          logoColor: "#4D4D4D"
           style: flat-square
 
   release:
@@ -74,29 +61,32 @@ jobs:
     steps:
       - id: create_tag
         name: Create & Push Tag
-        run: |
-          TAG=$(echo '${{ github.event.head_commit.message }}' | grep -oP '.tag\[\K(.*?)(?=\])')
-          if [ -n "$TAG" ]; then
-            git tag $TAG
-            git push origin $TAG
-          else
-            TAG="NULL"
-            git tag $TAG
-            git push origin $TAG
-            echo "No tag found in commit message. Using default tag."
-          fi
-          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+        run: TAG=$(python setup.py --version) >> $GITHUB_ENV
         shell: bash
 
       - id: create_release
         uses: softprops/action-gh-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ steps.create_tag.outputs.TAG }}
+          TAG: ${{ env.TAG }}
         with:
           tag_name: ${{ env.TAG }}
           draft: false
           prerelease: false
+
+      - id: release_badge
+        if: always()
+        uses: schneegans/dynamic-badges-action@master
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: release_badge.json
+          label: Build
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          namedLogo: hackthebox
+          logoColor: "#4D4D4D"
+          style: flat-square
 
   publish:
     needs: setup_and_build
@@ -125,11 +115,12 @@ jobs:
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
-          filename: pypi-badge.json
+          filename: pypi_badge.json
           label: PyPI
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: pypi
+          logoColor: "#4D4D4D"
           style: flat-square
 
   docs:
@@ -137,10 +128,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: build_sphinx_docs
-        uses: ammaraskar/sphinx-action@master
-        with:
-          docs-folder: "StenLib/docs/"
+      - id: build_docs
+        name: Build Sphinx Documentation
+        run: make html
+        working-directory: StenLib/docs
 
       - id: install_ssh_key
         uses: shimataro/ssh-key-action@v2
@@ -162,9 +153,10 @@ jobs:
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
-          filename: docs-badge.json
+          filename: docs_badge.json
           label: Docs
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: googledocs
+          logoColor: "#4D4D4D"
           style: flat-square
