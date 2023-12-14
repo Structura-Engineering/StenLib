@@ -33,10 +33,7 @@
   // JSON Schema Settings
   "json.schemas": [
     {
-      "fileMatch": [
-        "*.json",
-        "*.jsonc"
-      ],
+      "fileMatch": ["*.json", "*.jsonc"],
       "url": "https://json.schemastore.org/package"
     }
   ],
@@ -71,13 +68,7 @@
   // Terminal Settings
   "terminal.integrated.enableMultiLinePasteWarning": false,
   // Todo Tree Settings
-  "todo-tree.general.tags": [
-    "ERROR",
-    "BUG",
-    "FIXME",
-    "TODO",
-    "NOTE"
-  ],
+  "todo-tree.general.tags": ["ERROR", "BUG", "FIXME", "TODO", "NOTE"],
   "todo-tree.highlights.defaultHighlight": {
     "gutterIcon": true,
     "fontWeight": "bold",

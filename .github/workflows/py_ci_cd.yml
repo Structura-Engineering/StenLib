@@ -51,7 +51,7 @@ jobs:
           label: Build
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          style: flat-square        
+          style: flat-square
 
   test:
     needs: build
@@ -72,7 +72,7 @@ jobs:
           label: Unittest
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          style: flat-square        
+          style: flat-square
 
   release:
     needs: test
@@ -137,7 +137,7 @@ jobs:
           label: PyPI
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          style: flat-square          
+          style: flat-square
 
   docs:
     needs: publish
@@ -154,7 +154,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+          known_hosts: "just-a-placeholder-so-we-dont-get-errors"
 
       - id: add_known_hosts
         name: Adding Known Hosts
@@ -175,4 +175,3 @@ jobs:
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           style: flat-square
-          
