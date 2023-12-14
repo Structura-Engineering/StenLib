@@ -104,7 +104,7 @@ jobs:
         run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
 
   create_badge:
-    needs: deploy
+    # needs: deploy
     runs-on: ubuntu-latest
     steps:
       - id: create_badge_run_unittests
