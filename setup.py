@@ -12,7 +12,7 @@ setup(
     },
     install_requires=open("requirements.txt").read().splitlines(),
     packages=find_packages(),
-    python_requires="=3.12.0",
+    python_requires="==3.12.0",
     package_data={"*": ["*.py"]},
     zip_safe=False,
 )
