@@ -51,7 +51,7 @@ jobs:
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: pytest
-          logoColor: "#4D4D4D"
+          logoColor: white
           style: flat-square
 
   release:
@@ -85,7 +85,7 @@ jobs:
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: hackthebox
-          logoColor: "#4D4D4D"
+          logoColor: white
           style: flat-square
 
   publish:
@@ -120,7 +120,7 @@ jobs:
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: pypi
-          logoColor: "#4D4D4D"
+          logoColor: white
           style: flat-square
 
   docs:
@@ -158,5 +158,5 @@ jobs:
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: googledocs
-          logoColor: "#4D4D4D"
+          logoColor: white
           style: flat-square
