@@ -12,19 +12,22 @@ jobs:
 
     steps:
       - id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@main
 
       - id: setup_python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@main
         with:
           python-version: "3.12"
           cache: "pip"
 
       - id: install_dependencies
-        name: Install dependencies
+        name: Install Dependencies
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install build
+          pip install twine
+          pip install sphinx
+          pip install sphinx-rtd-theme
 
       - id: build_package
         name: Build Package
@@ -50,7 +53,7 @@ jobs:
 
     steps:
       - id: run_unittests
-        name: Run unittests
+        name: Run Unittests
         run: python -m unittest discover -s StenLib/tests
 
       - id: unittest_badge
@@ -73,7 +76,7 @@ jobs:
 
     steps:
       - id: create_tag
-        name: Create & Push tag
+        name: Create & Push Tag
         run: |
           TAG=$(echo '${{ github.event.head_commit.message }}' | grep -oP '.tag\[\K(.*?)(?=\])')
           if [ -n "$TAG" ]; then
@@ -105,7 +108,7 @@ jobs:
 
     steps:
       - id: publish_to_pypi
-        name: Publish package to PyPI
+        name: Publish Package to PyPI
         if: contains(github.event.head_commit.message, '.deploy')
         run: twine upload dist/*
         env:
@@ -113,7 +116,7 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
       - id: publish_to_testpypi
-        name: Publish package to TestPyPI
+        name: Publish Package to TestPyPI
         if: contains(github.event.head_commit.message, '.deploy .test')
         run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
         env:
@@ -156,7 +159,7 @@ jobs:
         run: ssh-keyscan -4 -v -p ${{ secrets.SSH_HOST_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - id: copy_docs
-        name: Copy docs to webserver
+        name: Copy Docs to Webserver
         run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
 
       - id: docs_badge
