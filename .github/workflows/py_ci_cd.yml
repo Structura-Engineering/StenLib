@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  setup:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +32,53 @@ jobs:
           pip install sphinx
           pip install sphinx-rtd-theme
 
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: build_package
+        name: Build package
+        run: python -m build
+
+      - id: build_badge
+        name: Build Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: build-badge.json
+          label: Build
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          style: flat-square        
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: run_unittests
+        name: Run unittests
+        run: python -m unittest discover -s StenLib/tests
+
+      - id: unittest_badge
+        name: Unittest Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: unittest-badge.json
+          label: Unittest
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          style: flat-square        
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
       - id: create_tag
         name: Create & Push tag
         run: |
@@ -48,14 +95,6 @@ jobs:
           echo "TAG=${TAG}" >> $GITHUB_OUTPUT
         shell: bash
 
-      - id: run_unittests
-        name: Run unittests
-        run: python -m unittest discover -s StenLib/tests
-
-      - id: build_package
-        name: Build package
-        run: python -m build
-
       - id: create_release
         name: Create GitHub Release
         uses: softprops/action-gh-release@master
@@ -67,6 +106,11 @@ jobs:
           draft: false
           prerelease: false
 
+  publish:
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
       - id: publish_to_pypi
         name: Publish package to PyPI
         if: contains(github.event.head_commit.message, '.deploy')
@@ -83,6 +127,23 @@ jobs:
           TWINE_USERNAME: ${{ secrets.TESTPYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.TESTPYPI_PASSWORD }}
 
+      - id: pypi_badge
+        name: PyPI Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.GIST_ID }}
+          filename: pypi-badge.json
+          label: PyPI
+          message: ${{ job.status }}
+          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
+          style: flat-square          
+
+  docs:
+    needs: publish
+    runs-on: ubuntu-latest
+
+    steps:
       - id: build_docs
         name: Build Sphinx Documentation
         run: make html
@@ -103,48 +164,8 @@ jobs:
         name: Copy docs to webserver
         run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
 
-  create_badge:
-    # needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - id: create_badge_run_unittests
-        name: Unit Tests Badge
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: ${{ secrets.GIST_ID }}
-          filename: unittest-badge.json
-          label: Unittest
-          message: ${{ job.status }}
-          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          style: flat-square
-
-      - id: create_badge_build_package
-        name: Build Package Badge
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: ${{ secrets.GIST_ID }}
-          filename: build-badge.json
-          label: Build
-          message: ${{ job.status }}
-          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          style: flat-square
-
-      - id: create_badge_publish_to_pypi
-        name: PyPI Publish Badge
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: ${{ secrets.GIST_ID }}
-          filename: pypi-badge.json
-          label: PyPI
-          message: ${{ job.status }}
-          color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
-          style: flat-square
-
-      - id: create_badge_copy_docs
-        name: Copy Docs Badge
+      - id: docs_badge
+        name: Docs Badge
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
@@ -154,3 +175,4 @@ jobs:
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           style: flat-square
+          
