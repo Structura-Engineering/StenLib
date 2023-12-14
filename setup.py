@@ -1,10 +1,8 @@
 from setuptools import find_packages, setup
 
-python_requires = "==3.12.0"
-
 setup(
     name="StenLib",
-    version="0.4.5",
+    version="0.4.6",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     license=open("LICENSE.md").read(),
