@@ -102,3 +102,17 @@ jobs:
       - id: copy_docs
         name: Copy docs to webserver
         run: sshpass -p '${{ secrets.SSH_KEY_PASS }}' scp -o HostKeyAlgorithms=ssh-rsa,ssh-dss -P ${{ secrets.SSH_HOST_PORT }} -r ./StenLib/docs/build/html/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_HOST_PATH }}
+
+  create_badge:
+    # needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Awesome Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with : 
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: <gist-ID>
+          filename: test.json
+          label: Hello
+          message: World
+          color: orange

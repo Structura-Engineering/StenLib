@@ -8,15 +8,6 @@
     <img alt="DeepSource Resolved Issues" src="https://app.deepsource.com/gh/Structura-Engineering/StenLib.svg/?label=resolved+issues&show_trend=true&token=aVu9lik1r9ykXWLQZSGz3ItB">
   </a>
 </p>
-<p align="center">
-  <a href="https://github.com/Structura-Engineering/StenLib/actions">
-    <img alt="Run Unittests Status" src="https://github.com/Structura-Engineering/StenLib/workflows/Python%20CI%2FCD/badge.svg?event=workflow_run&job=run_unittests">
-    <img alt="Build Package Status" src="https://github.com/Structura-Engineering/StenLib/workflows/Python%20CI%2FCD/badge.svg?event=workflow_run&job=build_package">
-    <img alt="Publish to PyPI Status" src="https://github.com/Structura-Engineering/StenLib/workflows/Python%20CI%2FCD/badge.svg?event=workflow_run&job=publish_to_pypi">
-    <img alt="Publish to TestPyPI Status" src="https://github.com/Structura-Engineering/StenLib/workflows/Python%20CI%2FCD/badge.svg?event=workflow_run&job=publish_to_testpypi">
-    <img alt="Copy Docs to Webserver Status" src="https://github.com/Structura-Engineering/StenLib/workflows/Python%20CI%2FCD/badge.svg?event=workflow_run&job=copy_docs">
-  </a>
-</p>
 
 ## Setup the project:
 
