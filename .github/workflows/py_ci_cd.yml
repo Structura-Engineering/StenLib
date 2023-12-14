@@ -107,7 +107,8 @@ jobs:
     # needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Create Awesome Badge
+      - id: create_badge
+        name: Create Awesome Badge
         uses: schneegans/dynamic-badges-action@v1.7.0
         with : 
           auth: ${{ secrets.GIST_SECRET }}

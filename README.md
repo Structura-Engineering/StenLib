@@ -8,6 +8,11 @@
     <img alt="DeepSource Resolved Issues" src="https://app.deepsource.com/gh/Structura-Engineering/StenLib.svg/?label=resolved+issues&show_trend=true&token=aVu9lik1r9ykXWLQZSGz3ItB">
   </a>
 </p>
+<p align="center">
+  <a href="">
+    <img alt="TEST" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/test.json">
+  </a>
+</p>
 
 ## Setup the project:
 
