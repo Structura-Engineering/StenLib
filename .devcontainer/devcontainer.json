@@ -30,8 +30,7 @@
         "github.copilot",
         "github.vscode-github-actions",
         "redhat.vscode-yaml",
-        "ms-azuretools.vscode-docker",
-        "circleci.circleci"
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
