@@ -179,7 +179,7 @@ jobs:
         working-directory: StenLib/docs
 
       - id: copy_docs
-        uses: mdallasanta/ssh-scp-deploy@v1.2.0
+        uses: mdallasanta/ssh-scp-deploy@main
         with:
           local: "./StenLib/docs/_build/html/*"
           remote: "${{ secrets.SSH_HOST_PATH }}"
