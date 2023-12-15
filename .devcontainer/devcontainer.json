@@ -28,6 +28,7 @@
         "ms-azuretools.vscode-docker",
         "ms-python.python",
         "ms-python.vscode-pylance",
+        "ms-vscode.live-server",
         "pkief.material-icon-theme",
         "redhat.vscode-yaml",
         "usernamehw.errorlens",
