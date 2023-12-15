@@ -29,10 +29,10 @@
   <p align="center">
     Library with premade methods for optimal coding production.
     <br />
-    <a href="https://github.com/Structura-Engineering/StenLib"><strong>Explore the docs »</strong></a>
+    <a href="https://docs.structura-engineering.com"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Structura-Engineering/StenLib">View Demo</a>
+    <a href="https://github.com/Structura-Engineering/StenLib">Samples</a>
     ·
     <a href="https://github.com/Structura-Engineering/StenLib/issues">Report Bug</a>
     ·
@@ -56,7 +56,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
   </ol>
@@ -116,14 +115,6 @@ _Below is an example of how you can instruct your audience on installing and set
    ```js
    const API_KEY = "ENTER YOUR API";
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
