@@ -187,6 +187,7 @@ jobs:
           port: ${{ secrets.SSH_HOST_PORT }}
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh_options: -oHostKeyAlgorithms=+ssh-dss
 
       - id: docs_badge
         if: always()
