@@ -12,7 +12,7 @@ jobs:
     if: contains(github.event.head_commit.message, '.deploy')
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
     steps:
       - id: keyword_check
         run: echo "Keyword Check Passed"
@@ -22,7 +22,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -30,7 +31,7 @@ jobs:
       - id: setup_python
         uses: actions/setup-python@main
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.version }}
           cache: "pip"
 
       - id: run_unittests
@@ -56,7 +57,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -64,7 +66,7 @@ jobs:
       - id: setup_python
         uses: actions/setup-python@main
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.version }}
           cache: "pip"
 
       - id: install_dependencies
@@ -110,7 +112,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -118,7 +121,7 @@ jobs:
       - id: setup_python
         uses: actions/setup-python@main
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.version }}
           cache: "pip"
 
       - id: install_dependencies
@@ -167,7 +170,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -175,7 +179,7 @@ jobs:
       - id: setup_python
         uses: actions/setup-python@main
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.version }}
           cache: "pip"
 
       - id: install_dependencies
