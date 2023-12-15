@@ -7,17 +7,22 @@ on:
       - main
 
 jobs:
-  keyword_check:
-    runs-on: ubuntu-latest
+  Keyword_Check:
+    runs-on: ${{ matrix.os }}
     if: contains(github.event.head_commit.message, '.deploy')
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - id: keyword_check
         run: echo "Keyword Check Passed"
 
-  test:
-    needs: keyword_check
-    runs-on: ubuntu-latest
-
+  Test:
+    needs: Keyword_Check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -46,10 +51,12 @@ jobs:
           logoColor: white
           style: flat-square
 
-  release:
-    needs: keyword_check
-    runs-on: ubuntu-latest
-
+  Release:
+    needs: Keyword_Check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -98,10 +105,12 @@ jobs:
           logoColor: white
           style: flat-square
 
-  publish:
-    needs: keyword_check
-    runs-on: ubuntu-latest
-
+  Publish:
+    needs: Keyword_Check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -153,10 +162,12 @@ jobs:
           logoColor: white
           style: flat-square
 
-  docs:
-    needs: keyword_check
-    runs-on: ubuntu-latest
-
+  Documentation:
+    needs: Keyword_Check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - id: checkout
         uses: actions/checkout@main
