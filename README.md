@@ -1,22 +1,22 @@
-<h1>Welcome to:</h1>
+# Welcome to:
 
-<h2>StenLib</h2>
+## StenLib
 
-<div align="center">
+<p align="center">
   <a href="https://www.docker.com">
     <img alt="Docker" src="https://img.shields.io/badge/-Docker-blue?style=for-the-badge&logo=docker&logoColor=white">
   </a>
   <a href="https://www.python.org">
     <img alt="Python" src="https://img.shields.io/badge/-Python-yellow?style=for-the-badge&logo=python&logoColor=white">
   </a>  
-</div>
-<div align="center">
+</p>
+<p align="center">
   <a href="https://app.deepsource.com/gh/Structura-Engineering/StenLib/">
     <img alt="DeepSource Active Issues" src="https://app.deepsource.com/gh/Structura-Engineering/StenLib.svg/?label=active+issues&show_trend=true&token=aVu9lik1r9ykXWLQZSGz3ItB">
     <img alt="DeepSource Resolved Issues" src="https://app.deepsource.com/gh/Structura-Engineering/StenLib.svg/?label=resolved+issues&show_trend=true&token=aVu9lik1r9ykXWLQZSGz3ItB">
   </a>
-</div>
-<div align="center">
+</p>
+<p align="center">
   <a href="">
     <img alt="Build" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/release_badge.json">
     <img alt="Unittest" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/unittest_badge.json">
@@ -24,21 +24,32 @@
     <img alt="Docs" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/docs_badge.json">    
     <img alt="Code Quality" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/code_quality_badge.json">      
   </a>
-</div>
+</p>
 
-<h2>Setup the project:</h2>
+## Setup the project:
 
-<ol>
-  <li>Install <span style="font-family:monospace;color:darkgoldenrod;">Docker Desktop</span>.</li>
-  <li>Click on the <span style="font-family:monospace;color:darkgoldenrod;">blue remote button</span> on the bottom left of vsc.</li>
-  <li>Click on <span style="font-family:monospace;color:darkgoldenrod;">Clone Repository in Container Volume...</span>.</li>
-  <li>Follow the steps one by one, Wait a bit, Done.</li>
-</ol>
+1. Install `Docker Desktop`.
+2. Click on the `blue remote button` on the bottom left of vsc.
+3. Click on `Clone Repository in Container Volume...`.
+4. Follow the steps one by one, Wait a bit, Done.
 
-<h2>Build package, Release on Github & Upload to (Test)PyPi:</h2>
+## Build package, Release on Github & Upload to (Test)PyPi:
 
-<ol>
-  <li>FOR <span style="font-family:monospace;color:darkgoldenrod;">PyPi</span>: In the push message use the keyword <span style="font-family:monospace;color:darkgoldenrod;">.deploy</span>.</li>
-  <li>FOR <span style="font-family:monospace;color:darkgoldenrod;">TestPyPi</span>: In the push message use the keyword <span style="font-family:monospace;color:darkgoldenrod;">.deploy .test</span>.</li>
-  <li><strong>DONT FORGET TO CHANGE THE VERSION IN <span style="font-family:monospace;color:darkgoldenrod;">setup.py</span></strong>.</li>
-</ol>
+1. FOR `PyPi`: In the push message use the keyword `.deploy`.
+2. FOR `TestPyPi`: In the push message use the keyword `.deploy .test`.
+3. DONT FORGET TO CHANGE THE VERSION IN `setup.py`.
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
