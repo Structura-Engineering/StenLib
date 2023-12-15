@@ -178,16 +178,6 @@ jobs:
         run: make html
         working-directory: StenLib/docs
 
-      - id: install_ssh_key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: unnecessary
-
-      - id: add_known_hosts
-        name: Adding Known Hosts
-        run: ssh-keyscan -4 -v -p ${{ secrets.SSH_HOST_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
       - id: copy_docs
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
         with:
