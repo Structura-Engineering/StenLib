@@ -181,7 +181,7 @@ jobs:
       - id: copy_docs
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
         with:
-          local: "./StenLib/docs/build/html/*"
+          local: "./StenLib/docs/_build/html/*"
           remote: "${{ secrets.SSH_HOST_PATH }}"
           host: ${{ secrets.SSH_HOST }}
           port: ${{ secrets.SSH_HOST_PORT }}
