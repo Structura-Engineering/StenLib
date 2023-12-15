@@ -7,6 +7,10 @@
   "code-runner.runInTerminal": true,
   // Editor Settings
   "editor.formatOnSave": true,
+  // HTML-specific Editor Settings
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   // JSON-specific Editor Settings
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

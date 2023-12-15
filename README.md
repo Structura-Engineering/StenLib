@@ -1,6 +1,6 @@
-# Welcome to:
+<h1>Welcome to:</h1>
 
-## StenLib
+<h2>StenLib</h2>
 
 <p align="center">
   <a href="https://app.deepsource.com/gh/Structura-Engineering/StenLib/">
@@ -26,15 +26,19 @@
   </a>
 </p>
 
-## Setup the project:
+<h2>Setup the project:</h2>
 
-1. Install `Docker Desktop`.
-2. Click on the `blue remote button` on the bottom left of vsc.
-3. Click on `Clone Repository in Container Volume...`.
-4. Follow the steps one by one, Wait a bit, Done.
+<ol>
+  <li>Install `Docker Desktop`.</li>
+  <li>Click on the `blue remote button` on the bottom left of vsc.</li>
+  <li>Click on `Clone Repository in Container Volume...`.</li>
+  <li>Follow the steps one by one, Wait a bit, Done.</li>
+</ol>
 
-## Build package, Release on Github & Upload to (Test)PyPi:
+<h2>Build package, Release on Github & Upload to (Test)PyPi:</h2>
 
-1. FOR `PyPi`: In the push message use the keyword `.deploy`.
-2. FOR `TestPyPi`: In the push message use the keyword `.deploy .test`.
-3. \*\*\*DONT FORGET TO CHANGE THE VERSION IN `setup.py`\*\*\*.
+<ol>
+  <li>FOR `PyPi`: In the push message use the keyword `.deploy`.</li>
+  <li>FOR `TestPyPi`: In the push message use the keyword `.deploy .test`.</li>
+  <li><strong>DONT FORGET TO CHANGE THE VERSION IN `setup.py`</strong>.</li>
+</ol>
