@@ -9,6 +9,11 @@
   </a>
 </p>
 <p align="center">
+  <a href="https://www.docker.com">
+    <img alt="Docker" src="https://img.shields.io/badge/Docker-blue">
+  </a>
+</p>
+<p align="center">
   <a href="">
     <img alt="Build" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/release_badge.json">
     <img alt="Unittest" src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/unittest_badge.json">
