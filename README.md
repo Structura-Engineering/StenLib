@@ -1,6 +1,4 @@
-# Welcome to:
-
-## StenLib
+## Welcome to: **StenLib**
 
 <p align="center">
   <a href="https://www.docker.com">
@@ -37,7 +35,7 @@
 
 1. FOR `PyPi`: In the push message use the keyword `.deploy`.
 2. FOR `TestPyPi`: In the push message use the keyword `.deploy .test`.
-3. DONT FORGET TO CHANGE THE VERSION IN `setup.py`.
+3. **DONT FORGET TO CHANGE THE VERSION IN `setup.py`**.
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
