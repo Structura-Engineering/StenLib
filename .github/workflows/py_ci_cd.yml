@@ -53,7 +53,7 @@ jobs:
           style: flat-square
 
   Release:
-    needs: Keyword_Check
+    needs: [Keyword_Check, Test]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -108,7 +108,7 @@ jobs:
           style: flat-square
 
   Publish:
-    needs: Keyword_Check
+    needs: [Keyword_Check, Test]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -166,7 +166,7 @@ jobs:
           style: flat-square
 
   Documentation:
-    needs: Keyword_Check
+    needs: [Keyword_Check, Test]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
