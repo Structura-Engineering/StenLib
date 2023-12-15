@@ -7,23 +7,25 @@ on:
       - main
 
 jobs:
-  Keyword_Check:
+  keyword_check:
+    name: Keyword Check
     runs-on: ${{ matrix.os }}
     if: contains(github.event.head_commit.message, '.deploy')
     strategy:
       matrix:
-        os: ${{ vars.OS }}
+        os: [ubuntu-latest]
     steps:
       - id: keyword_check
         run: echo "Keyword Check Passed"
 
-  Test:
-    needs: Keyword_Check
+  test:
+    name: Test
+    needs: keyword_check
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ${{ vars.OS }}
-        version: ${{ vars.PY_VERSION }}
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -52,13 +54,14 @@ jobs:
           logoColor: white
           style: flat-square
 
-  Release:
-    needs: [Keyword_Check, Test]
+  release:
+    name: Release
+    needs: [keyword_check, test]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ${{ vars.OS }}
-        version: ${{ vars.PY_VERSION }}
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -107,13 +110,14 @@ jobs:
           logoColor: white
           style: flat-square
 
-  Publish:
-    needs: [Keyword_Check, Test]
+  publish:
+    name: Publish
+    needs: [keyword_check, test]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ${{ vars.OS }}
-        version: ${{ vars.PY_VERSION }}
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -165,13 +169,14 @@ jobs:
           logoColor: white
           style: flat-square
 
-  Documentation:
-    needs: [Keyword_Check, Test]
+  documentation:
+    name: Documentation
+    needs: [keyword_check, test]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ${{ vars.OS }}
-        version: ${{ vars.PY_VERSION }}
+        os: [ubuntu-latest]
+        version: [3.12]
     steps:
       - id: checkout
         uses: actions/checkout@main
