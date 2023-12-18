@@ -1,10 +1,19 @@
 import unittest
-
 from StenLib.StenUtils import Utils
 
 
 class TestUtils(unittest.TestCase):
     """Test case for Utils class."""
+
+    def test_rstr(self):
+        """
+        Test the rstr method of Utils.
+
+        Returns:
+            None
+        """
+        result = Utils.rstr("Hello, World!")
+        self.assertEqual(result, "!dlroW ,olleH")
 
     def test_alphanumeric_id_generator(self):
         """
@@ -25,6 +34,10 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(len(result_negative_chars), 10)
         self.assertTrue(result_negative_chars.isalnum())
 
+        result_reversed = Utils.alphanumeric_id_generator(reversed=True)
+        self.assertEqual(result_reversed, result_reversed[::-1])
+        self.assertTrue(result_reversed.isalnum())
+
     def test_alphanumeric_id_generator_secrets(self):
         """
         Test the alphanumeric_id_generator method of Utils with secrets module.
@@ -43,6 +56,12 @@ class TestUtils(unittest.TestCase):
         result_negative_chars = Utils.alphanumeric_id_generator(-10, use_secrets=True)
         self.assertEqual(len(result_negative_chars), 10)
         self.assertTrue(result_negative_chars.isalnum())
+
+        result_reversed = Utils.alphanumeric_id_generator(
+            reversed=True, use_secrets=True
+        )
+        self.assertEqual(result_reversed, result_reversed[::-1])
+        self.assertTrue(result_reversed.isalnum())
 
 
 if __name__ == "__main__":
