@@ -80,13 +80,12 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-md
-          pip install pytest-emoji
 
       - id: test_run_and_report
         uses: pavelzw/pytest-action@main
         with:
           verbose: true
-          emoji: true
+          emoji: false
           job-summary: true
           custom-arguments: "-q"
           click-to-expand: true

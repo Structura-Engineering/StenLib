@@ -75,12 +75,7 @@
   // Python Testing Settings
   "python.testing.pytestEnabled": true,
   "python.testing.unittestEnabled": false,
-  "python.testing.pytestArgs": [
-    "--rootdir=.",
-    "--verbose",
-    "StenLib/tests",
-    "--junitxml=StenLib/tests/reports/pytest_report.xml"
-  ],
+  "python.testing.pytestArgs": ["--rootdir=.", "--verbose", "StenLib/tests"],
   // Terminal Settings
   "terminal.integrated.enableMultiLinePasteWarning": false,
   // Todo Tree Settings
