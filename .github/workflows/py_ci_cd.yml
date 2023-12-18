@@ -89,7 +89,7 @@ jobs:
         with:
           name: Pytest Report
           path: StenLib/tests/reports/pytest_report.xml
-          reporter: junit
+          reporter: python-unittest
 
       - id: pytest_badge
         if: always()
