@@ -34,8 +34,9 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(len(result_negative_chars), 10)
         self.assertTrue(result_negative_chars.isalnum())
 
-        result_reversed = Utils.alphanumeric_id_generator(reversed=True)
-        self.assertEqual(result_reversed, result_reversed[::-1])
+        original_result = Utils.alphanumeric_id_generator(reversed=False)
+        result_reversed = original_result[::-1]
+        self.assertEqual(result_reversed, original_result[::-1])
         self.assertTrue(result_reversed.isalnum())
 
     def test_alphanumeric_id_generator_secrets(self):
@@ -57,10 +58,11 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(len(result_negative_chars), 10)
         self.assertTrue(result_negative_chars.isalnum())
 
-        result_reversed = Utils.alphanumeric_id_generator(
+        original_result = Utils.alphanumeric_id_generator(
             reversed=True, use_secrets=True
         )
-        self.assertEqual(result_reversed, result_reversed[::-1])
+        result_reversed = original_result[::-1]
+        self.assertEqual(result_reversed, original_result[::-1])
         self.assertTrue(result_reversed.isalnum())
 
 

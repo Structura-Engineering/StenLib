@@ -20,6 +20,7 @@ jobs:
 
   code_quality:
     name: Code Quality Check
+    needs: [keyword_check, testing]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -58,7 +59,7 @@ jobs:
 
   testing:
     name: Unittests
-    needs: keyword_check
+    needs: [keyword_check]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -74,9 +75,24 @@ jobs:
           python-version: ${{ matrix.version }}
           cache: "pip"
 
+      - id: install_dependencies
+        name: Install Dependencies
+        run: |
+          pip install xmlrunner
+
       - id: run_unittests
         name: Run Unittests
-        run: python -m unittest discover -s StenLib/tests
+        run: |
+          mkdir -p StenLib/tests/reports
+          python -m unittest discover -s StenLib/tests --runner=xmlrunner.XMLTestRunner --output=StenLib/tests/reports
+
+      - id: test_report
+        uses: dorny/test-reporter@main
+        if: success() || failure()
+        with:
+          name: Unittests
+          path: StenLib/tests/reports/junit-*.xml
+          reporter: junit
 
       - id: unittest_badge
         if: always()
@@ -94,7 +110,7 @@ jobs:
 
   release:
     name: Release
-    needs: [keyword_check, testing]
+    needs: [testing]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -150,7 +166,7 @@ jobs:
 
   publish:
     name: Publish
-    needs: [keyword_check, testing]
+    needs: [testing]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -209,7 +225,7 @@ jobs:
 
   documentation:
     name: Documentation
-    needs: [keyword_check, testing]
+    needs: [testing]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
