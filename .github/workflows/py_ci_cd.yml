@@ -79,17 +79,15 @@ jobs:
         name: Install Dependencies
         run: pip install pytest
 
-      - id: run_pytests
-        name: Run Pytests
-        run: python -m pytest --junitxml=StenLib/tests/reports/pytest_report.xml
-
-      - id: test_report
-        uses: dorny/test-reporter@main
-        if: success() || failure()
+      - id: test_run_and_report
+        uses: pavelzw/pytest-action@main
         with:
-          name: Pytest Report
-          path: StenLib/tests/reports/pytest_report.xml
-          reporter: python-unittest
+          verbose: true
+          emoji: true
+          job-summary: true
+          custom-arguments: "-q"
+          click-to-expand: true
+          report-title: "Test Report"
 
       - id: pytest_badge
         if: always()
