@@ -31,6 +31,10 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
   },
+  // XML-specific Editor Settings
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   // General Settings
   "extensions.ignoreRecommendations": true,
   // Explorer Settings
@@ -68,15 +72,15 @@
   "python.analysis.typeCheckingMode": "basic",
   // Python Language Server Settings
   "python.languageServer": "Pylance",
-  "python.testing.pytestEnabled": false,
-  "python.testing.unittestArgs": [
-    "-v",
-    "-s",
-    "./StenLib/tests",
-    "-p",
-    "test_*.py"
+  // Python Testing Settings
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": [
+    "--rootdir=.",
+    "--verbose",
+    "StenLib/tests",
+    "--junitxml=StenLib/tests/reports/pytest_report.xml"
   ],
-  "python.testing.unittestEnabled": true,
   // Terminal Settings
   "terminal.integrated.enableMultiLinePasteWarning": false,
   // Todo Tree Settings

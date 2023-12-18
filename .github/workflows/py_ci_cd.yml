@@ -58,7 +58,7 @@ jobs:
           style: flat-square
 
   testing:
-    name: Unittests
+    name: Pytests
     needs: [keyword_check]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -75,20 +75,26 @@ jobs:
           python-version: ${{ matrix.version }}
           cache: "pip"
 
-      - id: run_unittests
-        name: Run Unittests
-        run: |
-          mkdir -p StenLib/tests/reports
-          python -m unittest discover -s StenLib/tests --output=StenLib/tests/reports
+      - id: run_pytests
+        name: Run Pytests
+        run: python -m pytest --junitxml=StenLib/tests/reports/pytest_report.xml
 
-      - id: unittest_badge
+      - id: test_report
+        uses: dorny/test-reporter@main
+        if: success() || failure()
+        with:
+          name: Pytest Report
+          path: StenLib/tests/reports/pytest_report.xml
+          reporter: junit
+
+      - id: pytest_badge
         if: always()
         uses: schneegans/dynamic-badges-action@master
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
-          filename: unittest_badge.json
-          label: Unittest
+          filename: pytest_badge.json
+          label: pytest
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: pytest
