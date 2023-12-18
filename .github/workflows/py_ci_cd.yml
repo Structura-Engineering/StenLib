@@ -75,25 +75,11 @@ jobs:
           python-version: ${{ matrix.version }}
           cache: "pip"
 
-      - id: install_dependencies
-        name: Install Dependencies
-        run: |
-          pip install unittest2
-          pip install xmlrunner
-
       - id: run_unittests
         name: Run Unittests
         run: |
           mkdir -p StenLib/tests/reports
-          python -m unittest discover -s StenLib/tests --runner=xmlrunner.XMLTestRunner --output=StenLib/tests/reports
-
-      - id: test_report
-        uses: dorny/test-reporter@main
-        if: success() || failure()
-        with:
-          name: Unittests
-          path: StenLib/tests/reports/junit-*.xml
-          reporter: junit
+          python -m unittest discover -s StenLib/tests --output=StenLib/tests/reports
 
       - id: unittest_badge
         if: always()
