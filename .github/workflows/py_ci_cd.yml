@@ -42,11 +42,11 @@ jobs:
 
       - id: run_wemake_python_styleguide
         name: Run Wemake Python Style Guide
-        run: wemake-python-styleguide .
+        run: python -m flake8 .
 
       - id: wemake_python_styleguide_summary
         if: always()
-        run: echo '### Code Quality Check Summary ' >> $GITHUB_STEP_SUMMARY
+        run: echo '# Code Quality Check Summary ' >> $GITHUB_STEP_SUMMARY
 
       - id: code_quality_badge
         if: always()
@@ -251,7 +251,7 @@ jobs:
 
       - id: build_docs
         name: Build Sphinx Documentation
-        run: make html
+        run: python -m make html
         working-directory: StenLib/docs
 
       - id: copy_docs
