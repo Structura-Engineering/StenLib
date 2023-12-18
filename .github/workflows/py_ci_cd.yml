@@ -78,6 +78,7 @@ jobs:
       - id: install_dependencies
         name: Install Dependencies
         run: |
+          pip install unittest2
           pip install xmlrunner
 
       - id: run_unittests
