@@ -20,7 +20,7 @@ jobs:
 
   code_quality:
     name: Code Quality Check
-    needs: [keyword_check, testing]
+    needs: [keyword_check]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -38,10 +38,15 @@ jobs:
 
       - id: install_dependencies
         name: Install Dependencies
-        run: pip install pycodestyle
+        run: pip install wemake-python-styleguide
 
-      - name: Run PyCodeStyle
-        run: pycodestyle .
+      - id: run_wemake_python_styleguide
+        name: Run Wemake Python Style Guide
+        run: wemake-python-styleguide .
+
+      - id: wemake_python_styleguide_summary
+        if: always()
+        run: echo '### Code Quality Check Summary ' >> $GITHUB_STEP_SUMMARY
 
       - id: code_quality_badge
         if: always()
@@ -89,7 +94,7 @@ jobs:
           job-summary: true
           custom-arguments: "-q"
           click-to-expand: true
-          report-title: "Test Report"
+          report-title: "Pytests Summary"
 
       - id: pytest_badge
         if: always()
@@ -107,7 +112,7 @@ jobs:
 
   release:
     name: Release
-    needs: [testing]
+    needs: [testing, code_quality]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -163,7 +168,7 @@ jobs:
 
   publish:
     name: Publish
-    needs: [testing]
+    needs: [testing, code_quality]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -222,7 +227,7 @@ jobs:
 
   documentation:
     name: Documentation
-    needs: [testing]
+    needs: [testing, code_quality]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
