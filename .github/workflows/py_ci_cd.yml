@@ -75,6 +75,10 @@ jobs:
           python-version: ${{ matrix.version }}
           cache: "pip"
 
+      - id: install_dependencies
+        name: Install Dependencies
+        run: pip install pytest
+
       - id: run_pytests
         name: Run Pytests
         run: python -m pytest --junitxml=StenLib/tests/reports/pytest_report.xml
