@@ -18,6 +18,7 @@ jobs:
       - id: keyword_check
         run: echo "Keyword Check Passed"
 
+  # TODO: fix.
   code_quality:
     name: Code Quality Check
     needs: [keyword_check]
@@ -225,6 +226,7 @@ jobs:
           logoColor: white
           style: flat-square
 
+  # TODO: fix.
   documentation:
     name: Documentation
     needs: [testing, code_quality]
