@@ -77,7 +77,10 @@ jobs:
 
       - id: install_dependencies
         name: Install Dependencies
-        run: pip install pytest
+        run: |
+          pip install pytest
+          pip install pytest-md
+          pip install pytest-emoji
 
       - id: test_run_and_report
         uses: pavelzw/pytest-action@main
