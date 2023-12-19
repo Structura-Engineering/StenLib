@@ -217,7 +217,6 @@ jobs:
           logoColor: white
           style: flat-square
 
-  # TODO: fix.
   documentation:
     name: Documentation
     needs: [testing, code_quality]
