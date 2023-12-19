@@ -247,16 +247,16 @@ jobs:
         run: make html
         working-directory: StenLib/docs
 
-      - id: copy_docs
-        uses: mdallasanta/ssh-scp-deploy@main
+      - id: deploy_docs
+        uses: SamKirkland/FTP-Deploy-Action@master
         with:
-          local: "./StenLib/docs/_build/html/*"
-          remote: "${{ secrets.SSH_HOST_PATH }}"
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_HOST_PORT }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh_options: -oHostKeyAlgorithms=+ssh-dss
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ${{ secrets.FTP_PROTOCOL }}
+          local-dir: ${{ secrets.FTP_LOCAL_DIR }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
 
       - id: docs_badge
         if: always()
