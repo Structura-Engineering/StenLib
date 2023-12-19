@@ -11,7 +11,7 @@
 <div align="center">
 
 [![Release][release-shield]][release-url]
-[![Unittest][unittest-shield]][unittest-url]
+[![Pytest][pytest-shield]][pytest-url]
 [![PyPI][pypi-shield]][pypi-url]
 [![Documentation][documentation-shield]][documentation-url]
 [![Code Quality][codequality-shield]][codequality-url]
@@ -21,7 +21,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Structura-Engineering/StenLib">
-    <img src=".github/images/logo.png" alt="Logo" width="80" height="80">
+    <img src=".github/images/favicon.ico" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">StenLib</h3>
@@ -137,13 +137,13 @@ Distributed under the AGPL-3.0 License. See `LICENSE.md` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[contributors-shield]: https://img.shields.io/badge/Contributors-AGPL%203.0-blue.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Structura-Engineering/StenLib?style=for-the-badge&color=blue
 [contributors-url]: https://github.com/Structura-Engineering/StenLib/graphs/contributors
-[issues-shield]: https://img.shields.io/badge/Issues-AGPL%203.0-yellow.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/Structura-Engineering/StenLib?style=for-the-badge&color=yellow
 [issues-url]: https://github.com/Structura-Engineering/StenLib/issues
-[license-shield]: https://img.shields.io/badge/License-AGPL%203.0-green.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/Structura-Engineering/StenLib?style=for-the-badge&color=green
 [license-url]: https://github.com/Structura-Engineering/StenLib/blob/master/LICENSE.md
-[roadmap-shield]: https://img.shields.io/badge/Roadmap-AGPL%203.0-purple.svg?style=for-the-badge
+[roadmap-shield]: https://img.shields.io/badge/Roadmap-Click%20Me!-purple.svg?style=for-the-badge
 [roadmap-url]: https://github.com/orgs/Structura-Engineering/projects/2
 [docker-shield]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
 [docker-url]: https://docker.com/
@@ -151,8 +151,8 @@ Distributed under the AGPL-3.0 License. See `LICENSE.md` for more information.
 [python-url]: https://python.org/
 [release-shield]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/release_badge.json
 [release-url]: https://github.com/Structura-Engineering/StenLib/releases
-[unittest-shield]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/unittest_badge.json
-[unittest-url]: -
+[pytest-shield]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/pytest_badge.json
+[pytest-url]: https://github.com/Structura-Engineering/StenLib/actions
 [pypi-shield]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/pypi_badge.json
 [pypi-url]: https://pypi.org/project/StenLib/
 [documentation-shield]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/illyrius666/27fc61b978a42aea3bb569da8416b3e6/raw/docs_badge.json

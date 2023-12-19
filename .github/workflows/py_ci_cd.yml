@@ -3,8 +3,7 @@ run-name: "Sten's Python CI/CD"
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   keyword_check:
@@ -18,7 +17,7 @@ jobs:
       - id: keyword_check
         run: echo "Keyword Check Passed"
 
-  # TODO: fix.
+  # TODO: Can we rewrite this job to make use of third-party actions that have integrated job summaries?
   code_quality:
     name: Code Quality Check
     needs: [keyword_check]
@@ -69,7 +68,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         version: [3.12]
     steps:
       - id: checkout
@@ -104,7 +103,7 @@ jobs:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ${{ secrets.GIST_ID }}
           filename: pytest_badge.json
-          label: pytest
+          label: Pytest
           message: ${{ job.status }}
           color: ${{ job.status == 'success' && 'brightgreen' || 'red' }}
           namedLogo: pytest

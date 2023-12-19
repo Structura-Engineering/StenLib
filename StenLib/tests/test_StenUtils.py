@@ -5,8 +5,8 @@ def test_rstr():
     """
     Test the rstr method of Utils.
     """
-    result = Utils.rstr("Hello, World!")
-    assert result == "!dlroW ,olleH"
+    result = Utils.rstr('Hello, World!')
+    assert result == '!dlroW ,olleH'
 
 
 def test_alphanumeric_id_generator():
@@ -43,11 +43,15 @@ def test_alphanumeric_id_generator_secrets():
     assert len(result_10_chars) == 10
     assert result_10_chars.isalnum()
 
-    result_negative_chars = Utils.alphanumeric_id_generator(-10, use_secrets=True)
+    result_negative_chars = Utils.alphanumeric_id_generator(
+        -10, use_secrets=True
+    )
     assert len(result_negative_chars) == 10
     assert result_negative_chars.isalnum()
 
-    original_result = Utils.alphanumeric_id_generator(reversed=True, use_secrets=True)
+    original_result = Utils.alphanumeric_id_generator(
+        reversed=True, use_secrets=True
+    )
     result_reversed = original_result[::-1]
     assert result_reversed == original_result[::-1]
     assert result_reversed.isalnum()

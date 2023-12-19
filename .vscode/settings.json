@@ -26,10 +26,15 @@
   // Python-specific Editor Settings
   "[python]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
+  },
+  // TOML-specific Editor Settings
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
   // XML-specific Editor Settings
   "[xml]": {

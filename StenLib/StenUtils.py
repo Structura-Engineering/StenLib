@@ -19,14 +19,17 @@ class Utils:
             str: The reversed string.
 
         Example:
-            >>> Utils.rstr("Hello, World!")
+            >>> Utils.rstr('Hello, World!')
             "!dlroW ,olleH"
         """
         return s[::-1]
 
     @classmethod
     def alphanumeric_id_generator(
-        cls, char_len: int = 6, use_secrets: bool = False, reversed: bool = False
+        cls,
+        char_len: int = 6,
+        use_secrets: bool = False,
+        reversed: bool = False,
     ) -> str:
         """Generate a random alphanumeric ID.
 
@@ -52,7 +55,7 @@ class Utils:
             "2y6fRk5n8T"
         """
         randomizer = secrets if use_secrets else random
-        generated_id = "".join(
+        generated_id = ''.join(
             randomizer.choice(cls.CHARS) for _ in range(abs(char_len))
         )
         return cls.rstr(generated_id) if reversed else generated_id
