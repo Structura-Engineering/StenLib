@@ -244,7 +244,7 @@ jobs:
 
       - id: build_docs
         name: Build Sphinx Documentation
-        run: python -m make html
+        run: make html
         working-directory: StenLib/docs
 
       - id: copy_docs
