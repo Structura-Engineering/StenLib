@@ -42,7 +42,7 @@ jobs:
 
       - id: run_ruff
         name: Run Ruff
-        run: python -m ruff . > ruff_output.txt
+        run: python -m ruff .
 
       - id: ruff_summary
         if: always()
@@ -97,7 +97,7 @@ jobs:
           job-summary: true
           custom-arguments: "-q"
           click-to-expand: true
-          report-title: "Pytests Summary"
+          report-title: "Pytest Report for OS: ${{ matrix.os }} and Python: ${{ matrix.version }}"
 
       - id: pytest_badge
         if: always()
