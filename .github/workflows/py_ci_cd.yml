@@ -38,15 +38,18 @@ jobs:
 
       - id: install_dependencies
         name: Install Dependencies
-        run: pip install wemake-python-styleguide
+        run: pip install ruff
 
-      - id: run_wemake_python_styleguide
-        name: Run Wemake Python Style Guide
-        run: python -m flake8 .
+      - id: run_ruff
+        name: Run Ruff
+        run: python -m ruff . > ruff_output.txt
 
-      - id: wemake_python_styleguide_summary
+      - id: ruff_summary
         if: always()
-        run: echo '# Code Quality Check Summary ' >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo '# Code Quality Check Summary ' >> $GITHUB_STEP_SUMMARY
+          echo '## Ruff Output ' >> $GITHUB_STEP_SUMMARY
+          cat ruff_output.txt >> $GITHUB_STEP_SUMMARY
 
       - id: code_quality_badge
         if: always()
