@@ -17,7 +17,6 @@ jobs:
       - id: keyword_check
         run: echo "Keyword Check Passed"
 
-  # TODO: Can we rewrite this job to make use of third-party actions that have integrated job summaries?
   code_quality:
     name: Code Quality Check
     needs: [keyword_check]
@@ -36,20 +35,10 @@ jobs:
           python-version: ${{ matrix.version }}
           cache: "pip"
 
-      - id: install_dependencies
-        name: Install Dependencies
-        run: pip install ruff
-
       - id: run_ruff
-        name: Run Ruff
-        run: python -m ruff .
-
-      - id: ruff_summary
-        if: always()
-        run: |
-          echo '# Code Quality Check Summary ' >> $GITHUB_STEP_SUMMARY
-          echo '## Ruff Output ' >> $GITHUB_STEP_SUMMARY
-          cat ruff_output.txt >> $GITHUB_STEP_SUMMARY
+        uses: chartboost/ruff-action@main
+        with:
+          args: -q
 
       - id: code_quality_badge
         if: always()
