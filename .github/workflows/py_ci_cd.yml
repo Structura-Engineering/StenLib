@@ -44,7 +44,7 @@ jobs:
         if: always()
         uses: schneegans/dynamic-badges-action@master
         with:
-          auth: ${{ secrets.GIST_SECRET }}
+          auth: ${{ secrets.GIST_ACCESS_TOKEN }}
           gistID: ${{ secrets.GIST_ID }}
           filename: code_quality_badge.json
           label: Code Quality
@@ -92,7 +92,7 @@ jobs:
         if: always()
         uses: schneegans/dynamic-badges-action@master
         with:
-          auth: ${{ secrets.GIST_SECRET }}
+          auth: ${{ secrets.GIST_ACCESS_TOKEN }}
           gistID: ${{ secrets.GIST_ID }}
           filename: pytest_badge.json
           label: Pytest
@@ -148,7 +148,7 @@ jobs:
         if: always()
         uses: schneegans/dynamic-badges-action@master
         with:
-          auth: ${{ secrets.GIST_SECRET }}
+          auth: ${{ secrets.GIST_ACCESS_TOKEN }}
           gistID: ${{ secrets.GIST_ID }}
           filename: release_badge.json
           label: Release
@@ -207,7 +207,7 @@ jobs:
         if: always()
         uses: schneegans/dynamic-badges-action@master
         with:
-          auth: ${{ secrets.GIST_SECRET }}
+          auth: ${{ secrets.GIST_ACCESS_TOKEN }}
           gistID: ${{ secrets.GIST_ID }}
           filename: pypi_badge.json
           label: PyPI
@@ -261,7 +261,7 @@ jobs:
         if: always()
         uses: schneegans/dynamic-badges-action@master
         with:
-          auth: ${{ secrets.GIST_SECRET }}
+          auth: ${{ secrets.GIST_ACCESS_TOKEN }}
           gistID: ${{ secrets.GIST_ID }}
           filename: docs_badge.json
           label: Docs
