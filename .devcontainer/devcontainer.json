@@ -22,6 +22,7 @@
         "charliermarsh.ruff",
         "esbenp.prettier-vscode",
         "formulahendry.code-runner",
+        "foxundermoon.shell-format",
         "github.copilot",
         "github.vscode-github-actions",
         "gruntfuggly.todo-tree",
