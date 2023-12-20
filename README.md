@@ -85,8 +85,8 @@ Feel free to dive into the documentation to kickstart your journey with StenLib.
 
 This section lists the key technologies and libraries that were used in the development of this project.
 
-- [![Docker][docker-shield]][Docker-url]
-- [![Python][python-shield]][Python-url]
+- [![Docker][docker-shield]][docker-url]
+- [![Python][python-shield]][python-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
