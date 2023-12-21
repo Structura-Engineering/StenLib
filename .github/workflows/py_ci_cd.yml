@@ -166,6 +166,8 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         version: [3.12]
+    permissions:
+      id-token: write
     steps:
       - id: checkout
         uses: actions/checkout@main
@@ -188,20 +190,7 @@ jobs:
         run: python -m build
 
       - id: publish_to_pypi
-        name: Publish Package to PyPI
-        if: contains(github.event.head_commit.message, '.deploy')
-        run: twine upload dist/*
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-
-      - id: publish_to_testpypi
-        name: Publish Package to TestPyPI
-        if: contains(github.event.head_commit.message, '.deploy .test')
-        run: twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-        env:
-          TWINE_USERNAME: ${{ secrets.TESTPYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.TESTPYPI_PASSWORD }}
+        uses: pypa/gh-action-pypi-publish@release/v1
 
       - id: pypi_badge
         if: always()
