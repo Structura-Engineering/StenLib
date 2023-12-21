@@ -54,7 +54,7 @@ jobs:
           logoColor: white
           style: flat-square
 
-  testing:
+  pytest:
     name: Pytests
     needs: [keyword_check]
     runs-on: ${{ matrix.os }}
@@ -104,7 +104,7 @@ jobs:
 
   release:
     name: Release
-    needs: [testing, code_quality]
+    needs: [pytest, code_quality]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -160,7 +160,7 @@ jobs:
 
   publish:
     name: Publish
-    needs: [testing, code_quality]
+    needs: [pytest, code_quality]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -208,7 +208,7 @@ jobs:
 
   documentation:
     name: Documentation
-    needs: [testing, code_quality]
+    needs: [pytest, code_quality]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
